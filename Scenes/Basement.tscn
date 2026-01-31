@@ -249,6 +249,9 @@ size = Vector3(3.8986816, 6.028967, 1.5078125)
 [node name="Sketchfab_Scene" instance=ExtResource("1_1irx4")]
 script = ExtResource("2_sqi4h")
 
+[node name="Skeleton3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/metarig_001_44/GLTF_created_0" index="0"]
+visible = false
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/metarig_001_44/GLTF_created_0/Skeleton3D" index="1"]
 shape = SubResource("ConcavePolygonShape3D_4tel2")
 
@@ -555,6 +558,9 @@ shape = SubResource("ConcavePolygonShape3D_vvtkv")
 
 [node name="metarig_162" parent="Sketchfab_model/root/GLTF_SceneRootNode" index="32"]
 transform = Transform3D(-0.90831465, 3.018199, -0.20740277, -5.4055545e-07, 0.21654887, 3.1512988, 3.0253167, 0.9061777, -0.062269606, -9.055712, 1.0689738, -10.2173395)
+
+[node name="Skeleton3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/metarig_162/GLTF_created_1" index="0"]
+visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/metarig_162/GLTF_created_1/Skeleton3D/Object_142" index="0"]
 
