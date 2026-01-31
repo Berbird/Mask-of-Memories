@@ -14,6 +14,10 @@ config/name="Mask of Memories"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://Other Art/icon.svg"
 
+[autoload]
+
+GameManager="*res://Scripts/GameManager.gd"
+
 [dotnet]
 
 project/assembly_name="Mask of Memories"

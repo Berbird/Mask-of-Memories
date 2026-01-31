@@ -19,53 +19,7 @@ var full_text_storage = ""
 var current_char_index = 0
 
 var portraits = {
-	"Okabe_Neutral": preload("res://Art/Characters/Okabe/Okabe_Neutral.png"),
-	"Okabe_Laugh": preload("res://Art/Characters/Okabe/Okabe_Laugh.png"),
-	"Okabe_Happy": preload("res://Art/Characters/Okabe/Okabe_Happy.png"),
-	"Okabe_Angry": preload("res://Art/Characters/Okabe/Okabe_Angry.png"),
-	"Okabe_Proud": preload("res://Art/Characters/Okabe/Okabe_Proud.png"),
-	"Okabe_Sad": preload("res://Art/Characters/Okabe/Okabe_Sad.png"),
-	"Okabe_Sweating": preload("res://Art/Characters/Okabe/Okabe_Sweating.png"),
-	"Okabe_Thinking": preload("res://Art/Characters/Okabe/Okabe_Thinking.png"),
-	"Okabe_Traumatized": preload("res://Art/Characters/Okabe/Okabe_Traumatized.png"),
-	
-	"Mayuri_Neutral": preload("res://Art/Characters/Mayuri/Mayuri_Neutral.png"),
-	"Mayuri_Angry": preload("res://Art/Characters/Mayuri/Mayuri_Angry.png"),
-	"Mayuri_Happy": preload("res://Art/Characters/Mayuri/Mayuri_Happy.png"),
-	"Mayuri_Pensive": preload("res://Art/Characters/Mayuri/Mayuri_Pensive.png"),
-	"Mayuri_Sad": preload("res://Art/Characters/Mayuri/Mayuri_Sad.png"),
-	"Mayuri_Tutturu": preload("res://Art/Characters/Mayuri/Mayuri_Tutturu.png"),
-	"Mayuri_Worried":  preload("res://Art/Characters/Mayuri/Mayuri_Worried.png"),
 
-	"Daru_Angry": preload("res://Art/Characters/Daru/Daru_Angry.png"),
-	"Daru_Focused": preload("res://Art/Characters/Daru/Daru_Focused.png"),
-	"Daru_Happy": preload("res://Art/Characters/Daru/Daru_Happy.png"),
-	"Daru_Sad": preload("res://Art/Characters/Daru/Daru_Sad.png"),
-	"Daru_Smug": preload("res://Art/Characters/Daru/Daru_Smug.png"),
-	"Daru_Worried": preload("res://Art/Characters/Daru/Daru_Worried.png"),
-	"Daru_Neutral": preload("res://Art/Characters/Daru/Daru_Neutral.png"),
-	
-	"Kurisu_Neutral": preload("res://Art/Characters/Kurisu/Kurisu_Neutral.png"),
-	"Kurisu_Angry": preload("res://Art/Characters/Kurisu/Kurisu_Angry.png"),
-	"Kurisu_Blushed": preload("res://Art/Characters/Kurisu/Kurisu_Blushed.png"),
-	"Kurisu_Happy": preload("res://Art/Characters/Kurisu/Kurisu_Happy.png"),
-	"Kurisu_Sad": preload("res://Art/Characters/Kurisu/Kurisu_Sad.png"),
-	"Kurisu_Sigh": preload("res://Art/Characters/Kurisu/Kurisu_Sigh.png"),
-	"Kurisu_Thinking": preload("res://Art/Characters/Kurisu/Kurisu_Thinking.png"),
-	"Kurisu_Worried": preload("res://Art/Characters/Kurisu/Kurisu_Worried.png"),
-	
-	"Moeka_Angry": preload("res://Art/Characters/Moeka/Moeka_Angry.png"),
-	"Moeka_Neutral": preload("res://Art/Characters/Moeka/Moeka_Neutral.png"),
-	"Moeka_Phone": preload("res://Art/Characters/Moeka/Moeka_Phone.png"),
-	"Moeka_Sad": preload("res://Art/Characters/Moeka/Moeka_Sad.png"),
-	
-	"Suzuha_Neutral": preload("res://Art/Characters/Suzuha/Suzuha_Neutral.png"),
-	"Suzuha_Jolly": preload("res://Art/Characters/Suzuha/Suzuha_Jolly.png"),
-	"Suzuha_Sad": preload("res://Art/Characters/Suzuha/Suzuha_Sad.png"),
-	"Suzuha_Serious": preload("res://Art/Characters/Suzuha/Suzuha_Serious.png"),
-	"Suzuha_Worried": preload("res://Art/Characters/Suzuha/Suzuha_Worried.png"),
-	"Suzuha_Angry": preload("res://Art/Characters/Suzuha/Suzuha_Angry.png"),
-	"Suzuha_Happy": preload("res://Art/Characters/Suzuha/Suzuha_Happy.png")
 }
 
 var character_pitches = {
