@@ -1,0 +1,19 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://ctusytrdabijp"]
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
+resource_name = "EQ10"
+
+[resource]
+bus/1/name = &"Dialogue"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -1.1215086
+bus/1/send = &""
+bus/1/effect/0/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectEQ10_j3pel")
+bus/1/effect/1/enabled = true

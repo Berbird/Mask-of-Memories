@@ -1,27 +1,34 @@
 extends Node
 
-var is_night = true
+var is_dialogue_active = false
+var can_interact = true
 
-func _ready():
-	# Because this is an Autoload, it runs the moment the game starts.
-	# We call our own function to load Trial 1.
-	change_perspective("res://Scenes/Trial_1.tscn")
-	
-	# Wait for the scene to actually land in the tree
-	await get_tree().process_frame
-	
-	# Find the DialogueSystem (assuming it's a child of this node or the root)
-	var dialogue = get_tree().root.find_child("DialogueSystem", true, false)
-	if dialogue:
-		dialogue.start_dialogue("Welcome to the game.", "System")
+var _story_flags: Dictionary = {}
 
-func change_perspective(new_scene_path: String):
-	# 'self' is the Main node in your case
-	# 1. Clear current children (like an old trial or basement)
-	for child in get_children():
-		if child.name != "DialogueSystem": 
-			child.queue_free()
+func set_flag(flag_name: String, value: bool) -> void:
+	_story_flags[flag_name] = value
+
+func get_flag(flag_name: String) -> bool:
+	return _story_flags.get(flag_name, false)
+
+func resolve_interaction(interaction_data: Dictionary) -> Dictionary:
+	for key in interaction_data:
+		if key == "default":
+			continue
 			
-	# 2. Instantiate and add the new 2D trial
-	var next_level = load(new_scene_path).instantiate()
-	add_child(next_level)
+		var entry = interaction_data[key]
+		if entry.has("condition"):
+			if check_conditions(entry["condition"]):
+				return entry
+	
+	if interaction_data.has("default"):
+		return interaction_data["default"]
+		
+	return {}
+
+func check_conditions(requirements: Dictionary) -> bool:
+	for flag in requirements:
+		var required_value = requirements[flag]
+		if get_flag(flag) != required_value:
+			return false
+	return true

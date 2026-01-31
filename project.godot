@@ -11,19 +11,38 @@ config_version=5
 [application]
 
 config/name="Mask of Memories"
-run/main_scene="uid://dmuu3epkeky4g"
+run/main_scene="uid://dura38q7ew8ur"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://Other Art/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://Sounds/SFX/default_bus_layout.tres"
 
 [autoload]
 
 GameManager="*res://Scripts/GameManager.gd"
 
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=180
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Mask of Memories"
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Interactable Objects"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true

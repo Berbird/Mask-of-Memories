@@ -6,11 +6,11 @@ var is_skipping = false
 var current_pitch = 1.0
 var indicator_tween: Tween
 
-const TEXT_WIDTH_NARROW = 950.0
-const TEXT_WIDTH_FULL = 1100.0
+const TEXT_WIDTH_NARROW = 222.0
+const TEXT_WIDTH_FULL = 260.0
 
-const INDICATOR_X_NARROW = 972.0
-const INDICATOR_X_FULL = 1122.0
+const INDICATOR_X_NARROW = 224.0
+const INDICATOR_X_FULL = 267.0
 
 const SOUND_FREQUENCY = 3
 const MAX_LINES = 3
@@ -19,16 +19,14 @@ var full_text_storage = ""
 var current_char_index = 0
 
 var portraits = {
-
+	"Lyra_Neutral": preload("res://Characters/Lyra/Portraits/Lyra_Neutral.png")
 }
 
 var character_pitches = {
-	"Okabe": 0.95,
-	"Mayuri": 1.7,
-	"Daru": 0.85,
-	"Kurisu": 1.45,
-	"Suzuha": 1.5,
-	"Moeka":  1.35
+	"Cain": 0.95,
+	"Lyra": 1.7,
+	"???": 1.45,
+	"Mask": 1
 }
 
 @onready var interaction_label = %DialogueText
@@ -38,20 +36,12 @@ var character_pitches = {
 @onready var name_label = %NameLabel
 @onready var next_indicator = %NextIndicator
 
-@onready var audio_okabe = %Okabe_Blip
-@onready var audio_mayuri = %Mayuri_Blip
-@onready var audio_daru = %Daru_Blip
-@onready var audio_suzuha = %Suzuha_Blip
-@onready var audio_kurisu = %Kurisu_Blip
+@onready var audio_cain = %Cain_Blip
+@onready var audio_lyra = %Lyra_Blip
+@onready var audio_mask = %Mask_Blip
 @onready var audio_normal = %Normal_Blip
 
 var current_audio_player = null
-
-func apply_lighting():
-	if GameManager.is_night:
-		portrait_rect.modulate = Color(0.6, 0.6, 0.75)
-	else:
-		portrait_rect.modulate = Color(1, 1, 1)
 
 func _ready():
 	add_to_group("DialogueSystem")
@@ -92,16 +82,12 @@ func start_dialogue(message, char_name = "", portrait_id = ""):
 	is_skipping = false
 	hide_indicator()
 	
-	if char_name == "Okabe":
-		current_audio_player = audio_okabe
-	elif char_name == "Mayuri":
-		current_audio_player = audio_mayuri
-	elif char_name == "Daru":
-		current_audio_player = audio_daru
-	elif char_name == "Suzuha":
-		current_audio_player = audio_suzuha
-	elif char_name == "Kurisu":
-		current_audio_player = audio_kurisu
+	if char_name == "Cain":
+		current_audio_player = audio_cain
+	elif char_name == "Lyra":
+		current_audio_player = audio_lyra
+	elif char_name == "Mask":
+		current_audio_player = audio_mask
 	else:
 		current_audio_player = audio_normal
 
@@ -121,7 +107,6 @@ func start_dialogue(message, char_name = "", portrait_id = ""):
 		portrait_rect.texture = portraits[portrait_id]
 		portrait_rect.show()
 		
-		apply_lighting()
 		
 		interaction_label.custom_minimum_size.x = TEXT_WIDTH_NARROW
 		next_indicator.position.x = INDICATOR_X_NARROW

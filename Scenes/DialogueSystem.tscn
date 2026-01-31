@@ -1,36 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm2pxxim7jj8b"]
+[gd_scene load_steps=10 format=3 uid="uid://bm2pxxim7jj8b"]
 
 [ext_resource type="Script" uid="uid://dpumklejwlkrh" path="res://Scripts/DialogueSystem.gd" id="1_vgbim"]
+[ext_resource type="AudioStream" uid="uid://c2go7uhmp8rkg" path="res://Sounds/SFX/Cain_Blip.wav" id="2_3tw4l"]
+[ext_resource type="Texture2D" uid="uid://683wex7ege6s" path="res://Other Art/Arrow.png" id="2_acykv"]
+[ext_resource type="FontFile" uid="uid://dt5sgpkryjq1j" path="res://Fonts/PixelOperator-Bold.ttf" id="2_mu8w7"]
+[ext_resource type="AudioStream" uid="uid://bgso4lsf7rv24" path="res://Sounds/SFX/Lyra_Blip.wav" id="3_acykv"]
+[ext_resource type="AudioStream" uid="uid://beakq1l1odmch" path="res://Sounds/SFX/Mask_Blip.wav" id="4_mu8w7"]
+[ext_resource type="AudioStream" uid="uid://c07t4p1vxwxth" path="res://Sounds/SFX/Normal_Blip.wav" id="5_v6ttb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgbim"]
 bg_color = Color(0.20784314, 0.16862746, 0.25882354, 0.7058824)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 shadow_color = Color(0.41960785, 0.41960785, 0.41960785, 0)
 shadow_size = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18b0x"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
 bg_color = Color(0.20784314, 0.16862746, 0.25882354, 0.7058824)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_vgbim")
@@ -45,60 +51,45 @@ grow_vertical = 2
 
 [node name="DialoguePanel" type="Panel" parent="UI_Container"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 180)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = -200.0
-offset_right = -40.0
-offset_bottom = -20.0
+offset_left = 20.0
+offset_top = -60.0
+offset_right = -20.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vgbim")
 
 [node name="Portrait" type="TextureRect" parent="UI_Container/DialoguePanel"]
 unique_name_in_owner = true
+texture_filter = 5
 texture_repeat = 1
-custom_minimum_size = Vector2(30, 30)
 layout_mode = 0
-offset_left = 1033.0
-offset_top = 18.0
-offset_right = 1177.0
-offset_bottom = 162.0
+offset_left = 238.0
+offset_top = 10.0
+offset_right = 274.0
+offset_bottom = 46.0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="NameBox" type="PanelContainer" parent="UI_Container/DialoguePanel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 13.0
-offset_top = -70.0
-offset_right = 173.0
-offset_bottom = -8.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_18b0x")
-
-[node name="NameLabel" type="Label" parent="UI_Container/DialoguePanel/NameBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="MarginContainer" type="MarginContainer" parent="UI_Container/DialoguePanel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
 
 [node name="DialogueText" type="Label" parent="UI_Container/DialoguePanel/MarginContainer"]
 unique_name_in_owner = true
@@ -107,7 +98,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 2
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 42
+theme_override_fonts/font = ExtResource("2_mu8w7")
+theme_override_font_sizes/font_size = 12
 vertical_alignment = 1
 autowrap_mode = 3
 visible_characters_behavior = 1
@@ -115,33 +107,53 @@ visible_characters_behavior = 1
 [node name="NextIndicator" type="TextureRect" parent="UI_Container/DialoguePanel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 972.0
-offset_top = 125.0
-offset_right = 1012.0
-offset_bottom = 165.0
+offset_left = 227.0
+offset_top = 44.0
+offset_right = 237.0
+offset_bottom = 54.0
+texture = ExtResource("2_acykv")
+expand_mode = 1
 
-[node name="Okabe_Blip" type="AudioStreamPlayer2D" parent="."]
+[node name="NameBox" type="PanelContainer" parent="UI_Container/DialoguePanel"]
 unique_name_in_owner = true
-volume_db = -15.0
+layout_mode = 0
+offset_left = 13.0
+offset_top = -27.0
+offset_right = 67.0
+offset_bottom = -2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_18b0x")
 
-[node name="Mayuri_Blip" type="AudioStreamPlayer2D" parent="."]
+[node name="NameLabel" type="Label" parent="UI_Container/DialoguePanel/NameBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_mu8w7")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cain_Blip" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_3tw4l")
+volume_db = -15.0
+bus = &"Dialogue"
+
+[node name="Lyra_Blip" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1, 0)
+stream = ExtResource("3_acykv")
 volume_db = -15.0
+bus = &"Dialogue"
 
-[node name="Daru_Blip" type="AudioStreamPlayer2D" parent="."]
+[node name="Mask_Blip" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
+stream = ExtResource("4_mu8w7")
 volume_db = -15.0
-
-[node name="Kurisu_Blip" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-volume_db = -15.0
-
-[node name="Suzuha_Blip" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-volume_db = -15.0
+bus = &"Dialogue"
 
 [node name="Normal_Blip" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -4)
+stream = ExtResource("5_v6ttb")
 volume_db = -15.0
+bus = &"Dialogue"

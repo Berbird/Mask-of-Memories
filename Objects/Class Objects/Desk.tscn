@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://twf5vqbnchng"]
+
+[ext_resource type="PackedScene" uid="uid://je4kxf3fp456" path="res://Objects/BaseObject.tscn" id="1_u75fb"]
+[ext_resource type="Texture2D" uid="uid://btrj8ptagg51r" path="res://Objects ART/allahımnolurolsun.png" id="2_my3u4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cvw7"]
+size = Vector2(12, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1is21"]
+size = Vector2(18, 13)
+
+[node name="Desk" instance=ExtResource("1_u75fb")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_my3u4")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_1cvw7")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_1is21")

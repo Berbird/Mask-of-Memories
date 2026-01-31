@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://je4kxf3fp456"]
+
+[ext_resource type="Script" uid="uid://cpddfd6v30a7j" path="res://Scripts/BaseObject.gd" id="1_h3vbv"]
+
+[node name="BaseObject" type="StaticBody2D"]
+collision_mask = 3
+script = ExtResource("1_h3vbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
