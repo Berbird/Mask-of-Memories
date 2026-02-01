@@ -1,17 +1,17 @@
 [
   {
-	"name": "Cain",
-	"text": "The air down here... it feels heavy.",
-	"portrait": "Lyra_Neutral"
-  },
-  {
 	"name": "???",
-	"text": "You shouldn't have come back, Cain.",
+	"text": "..ї $д $ $",
 	"portrait": ""
   },
   {
-	"name": "Cain",
-	"text": "Who's there?!",
+	"name": "???",
+	"text": "Cаїп п",
 	"portrait": "Lyra_Neutral"
+  },
+  {
+	"name": "Cаїп",
+	"text": "...",
+	"portrait": ""
   }
 ]
