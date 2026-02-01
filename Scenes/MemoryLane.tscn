@@ -43,29 +43,29 @@ region_enabled = true
 region_rect = Rect2(0, 0, 320, 1260)
 script = ExtResource("2_jjjxl")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Collisions" type="Node2D" parent="."]
 position = Vector2(157, 1149)
 
-[node name="Walls" type="StaticBody2D" parent="Node2D"]
+[node name="Walls" type="StaticBody2D" parent="Collisions"]
 position = Vector2(-157, -1149)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Walls"]
 position = Vector2(88, 630)
 rotation = 0.060336813
 shape = SubResource("RectangleShape2D_earvp")
 
-[node name="Walls2" type="StaticBody2D" parent="Node2D"]
+[node name="Walls2" type="StaticBody2D" parent="Collisions"]
 position = Vector2(-13, -1149)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Walls2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Walls2"]
 position = Vector2(88, 630)
 rotation = -0.060460135
 shape = SubResource("RectangleShape2D_earvp")
 
-[node name="BeginningWall" type="StaticBody2D" parent="Node2D"]
+[node name="BeginningWall" type="StaticBody2D" parent="Collisions"]
 position = Vector2(-157, -1149)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/BeginningWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/BeginningWall"]
 position = Vector2(161.00002, 1238.0001)
 scale = Vector2(1.1638962, -1.0224562)
 shape = SubResource("RectangleShape2D_cs2bx")
