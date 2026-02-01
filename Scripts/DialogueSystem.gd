@@ -65,16 +65,25 @@ var current_audio_player = null
 
 func _ready():
 	add_to_group("DialogueSystem")
+	
+	# Duplicate material so Lyra and Cain don't share the same palette state
 	if portrait_rect.material:
 		portrait_rect.material = portrait_rect.material.duplicate()
+	
 	update_portrait_colors()
+	
+	# We REMOVED the anchor/offset code here. 
+	# Now, the label will stay exactly where you placed it in the Editor.
 	
 	name_box.hide()
 	portrait_rect.hide()
 	interaction_panel.hide()
 	hide_indicator()
 	
+	# Ensure the text wraps correctly without shifting position
 	interaction_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	# Optional: Forces the text to stay centered vertically in the box
+	interaction_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
 func update_portrait_colors():
 	var mat = portrait_rect.material as ShaderMaterial
