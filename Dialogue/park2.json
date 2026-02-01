@@ -1,0 +1,17 @@
+[
+	{
+		"name": "Lyra",
+		"text": "Oh, hey... I didn't see you there. How much did you hear?",
+		"portrait": "Lyra_Neutral"
+	},
+	{
+		"name": "MC",
+		"text": "Enough to know they aren't your friends, Lyra.",
+		"portrait": ""
+	},
+	{
+		"name": "Lyra",
+		"text": "They're just... honest. Tell me the truth: Do you think I'm losing my mind too?",
+		"portrait": "Lyra_Neutral"
+	}
+]

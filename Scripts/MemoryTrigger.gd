@@ -28,4 +28,4 @@ func _on_body_entered(body: Node2D):
 		if target_scene_path:
 			get_tree().change_scene_to_file(target_scene_path)
 		else:
-			get_tree().change_scene_to_file(target_scene_path)
+			print("Target scene not found")
