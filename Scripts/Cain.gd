@@ -5,6 +5,12 @@ var current_direction = "front"
 
 @onready var anim_sprite = $AnimatedSprite2D
 
+func _ready():
+	if GameManager.is_returning_from_memory:
+		global_position = GameManager.last_player_position
+		GameManager.is_returning_from_memory = false
+
+
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		if !GameManager.is_dialogue_active && GameManager.can_interact:
@@ -46,7 +52,10 @@ func _physics_process(_delta):
 	player_movement(_delta)
 
 func player_movement(_delta):
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var dx = Input.get_axis("ui_left", "ui_right")
+	var dy = Input.get_axis("ui_up", "ui_down")
+	var direction = Vector2(dx, dy)
+
 	velocity = direction * SPEED
 	
 	if direction.length() > 0:

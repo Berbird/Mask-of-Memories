@@ -1,5 +1,7 @@
 extends Node
 
+var last_player_position: Vector2 = Vector2.ZERO
+var is_returning_from_memory: bool = false
 var is_dialogue_active = false
 var can_interact = true
 
@@ -32,3 +34,4 @@ func check_conditions(requirements: Dictionary) -> bool:
 		if get_flag(flag) != required_value:
 			return false
 	return true
+	

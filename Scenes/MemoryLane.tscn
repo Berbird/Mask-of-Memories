@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://dhrbua7hf1me2"]
+
+[ext_resource type="Shader" uid="uid://dsxdu7s3muxu4" path="res://Shaders/MemoryLane.gdshader" id="1_cs2bx"]
+[ext_resource type="Script" uid="uid://bohjjdh2yho3n" path="res://Scripts/Road.gd" id="2_jjjxl"]
+[ext_resource type="Texture2D" uid="uid://dobb438dup7py" path="res://Map/Road.png" id="2_jwyr6"]
+[ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="3_sbfe0"]
+[ext_resource type="PackedScene" uid="uid://bcr4ycpo2jbs3" path="res://Scenes/PostProcessLayer.tscn" id="4_earvp"]
+[ext_resource type="Texture2D" uid="uid://3m504fyhrdx4" path="res://Other Art/Palettes/BluePalette.png" id="5_jwyr6"]
+[ext_resource type="Shader" uid="uid://lslwev7auj2" path="res://Shaders/PaletteLimiter.gdshader" id="5_sbfe0"]
+[ext_resource type="Script" uid="uid://dejk82x8ay4ks" path="res://Scripts/MemoryTrigger.gd" id="8_sh0vy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_earvp"]
+shader = ExtResource("1_cs2bx")
+shader_parameter/taper_amount = 0.30000001425
+shader_parameter/base_width = 0.60000002524012
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_earvp"]
+size = Vector2(12, 1260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cs2bx"]
+size = Vector2(182, 40.75)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6uxx"]
+shader = ExtResource("5_sbfe0")
+shader_parameter/color1 = Color(0.101960786, 0.10980392, 0.17254902, 1)
+shader_parameter/color2 = Color(0.34117648, 0.36862746, 0.45882353, 1)
+shader_parameter/color3 = Color(0.60784316, 0.6431373, 0.70980394, 1)
+shader_parameter/color4 = Color(0.76862746, 0.7882353, 0.83137256, 1)
+shader_parameter/color5 = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh0vy"]
+size = Vector2(132, 2)
+
+[node name="MemoryLane" type="Node2D"]
+
+[node name="Road" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_earvp")
+position = Vector2(160, 630)
+texture = ExtResource("2_jwyr6")
+region_enabled = true
+region_rect = Rect2(0, 0, 320, 1260)
+script = ExtResource("2_jjjxl")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(157, 1149)
+
+[node name="Walls" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-157, -1149)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Walls"]
+position = Vector2(88, 630)
+rotation = 0.060336813
+shape = SubResource("RectangleShape2D_earvp")
+
+[node name="Walls2" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-13, -1149)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Walls2"]
+position = Vector2(88, 630)
+rotation = -0.060460135
+shape = SubResource("RectangleShape2D_earvp")
+
+[node name="BeginningWall" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-157, -1149)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/BeginningWall"]
+position = Vector2(161.00002, 1238.0001)
+scale = Vector2(1.1638962, -1.0224562)
+shape = SubResource("RectangleShape2D_cs2bx")
+
+[node name="Cain" parent="." instance=ExtResource("3_sbfe0")]
+position = Vector2(157, 1149)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_earvp")]
+layer = 1
+
+[node name="ColorRect" parent="CanvasLayer" index="0"]
+material = SubResource("ShaderMaterial_n6uxx")
+scene_palette = ExtResource("5_jwyr6")
+
+[node name="Trigger" type="Area2D" parent="."]
+position = Vector2(5, 84)
+script = ExtResource("8_sh0vy")
+target_scene_path = "uid://c24v1xibshb5r"
+memory_id = "asdasd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
+position = Vector2(160, 964)
+shape = SubResource("RectangleShape2D_sh0vy")
+
+[editable path="Cain"]
+[editable path="CanvasLayer"]
