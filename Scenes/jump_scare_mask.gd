@@ -19,8 +19,9 @@ func trigger_scare_dialogue():
 	# Finds the dialogue system to add context to the scare
 	var dialogue = get_tree().get_first_node_in_group("DialogueSystem")
 	if dialogue:
-		dialogue.start_dialogue("...Did you hear that?", "Cain")
-
+		dialogue.load_dialogue("res://Dialogue/memory_1.json")
+		await dialogue.dialogue_finished
+	print("Dialogue complete. Moving to next sequence.")
 func trigger_glitch_scare():
 	await apply_camera_shake(4)
 	# 1. Flash the entity rapidly to make it look unstable
