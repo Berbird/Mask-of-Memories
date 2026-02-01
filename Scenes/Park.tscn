@@ -1,40 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://b76lh1r1hhrl2"]
+[gd_scene load_steps=7 format=3 uid="uid://b76lh1r1hhrl2"]
 
-[ext_resource type="Script" path="res://Scripts/Park.gd" id="1_7blpo"]
+[ext_resource type="Script" uid="uid://m345s6ydh5fe" path="res://Scripts/Park.gd" id="1_7blpo"]
 [ext_resource type="Texture2D" uid="uid://bpi33ejb10dct" path="res://Map/TileRoom.png" id="1_tgvf0"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="2_2fh65"]
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_p6xxt"]
-[ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="3_7blpo"]
+[ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="3_7blpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6xxt"]
 size = Vector2(25, 25)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0mqpy"]
-shader = ExtResource("8_vm4cq")
-shader_parameter/color1 = Color(0.52156866, 0.101960786, 0.101960786, 1)
-shader_parameter/color2 = Color(0.6431373, 0.25490198, 0.20392157, 1)
-shader_parameter/color3 = Color(0.75686276, 0.41568628, 0.30980393, 1)
-shader_parameter/color4 = Color(0.87058824, 0.627451, 0.49411765, 1)
-shader_parameter/color5 = Color(0.75686276, 0.41568628, 0.30980393, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mqpy"]
-size = Vector2(36, 21)
-
 [node name="Park" type="Node2D"]
 script = ExtResource("1_7blpo")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(318, 92)
-shape = SubResource("RectangleShape2D_vm4cq")
-
 [node name="CanvasLayer" parent="." instance=ExtResource("2_p6xxt")]
-palette_1 = Color(0.52156866, 0.101960786, 0.101960786, 1)
-palette_2 = Color(0.6431373, 0.25490198, 0.20392157, 1)
-palette_3 = Color(0.75686276, 0.41568628, 0.30980393, 1)
-palette_4 = Color(0.87058824, 0.627451, 0.49411765, 1)
-palette_5 = Color(0.972549, 0.7921569, 0.627451, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(160, 91)
@@ -42,22 +20,6 @@ texture = ExtResource("1_tgvf0")
 
 [node name="Cain" parent="." instance=ExtResource("2_2fh65")]
 position = Vector2(217, 53)
-
-[node name="Camera2D" parent="Cain" index="3"]
-limit_bottom = 180
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(139, 61)
-sprite_frames = SubResource("SpriteFrames_7l7u3")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(156, 60)
-sprite_frames = SubResource("SpriteFrames_vm4cq")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.24240017
 
 [node name="Lyra" parent="." instance=ExtResource("3_7blpo")]
 position = Vector2(86, 129)
@@ -68,40 +30,4 @@ position = Vector2(86, 129)
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_p6xxt")
 
-[node name="CanvasLayer2" parent="." instance=ExtResource("7_3mvjm")]
-
-[node name="ColorRect" parent="CanvasLayer2" index="0"]
-material = SubResource("ShaderMaterial_0mqpy")
-offset_top = 1.0
-offset_bottom = 1.0
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(148, 61.5)
-shape = SubResource("RectangleShape2D_0mqpy")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(1.75, 87)
-shape = SubResource("RectangleShape2D_vm4cq")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(158.5, -2.5134048e-06)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_vm4cq")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="StaticBody2D4"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4/StaticBody2D4"]
-position = Vector2(160, 181)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_vm4cq")
-
 [connection signal="body_entered" from="Lyra/Area2D" to="." method="_on_area_2d_body_entered"]
-
-[editable path="Cain"]
-[editable path="CanvasLayer2"]
