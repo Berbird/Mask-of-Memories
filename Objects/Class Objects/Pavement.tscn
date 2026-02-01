@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq7mpqgd8p4as"]
+
+[ext_resource type="Texture2D" uid="uid://bpi33ejb10dct" path="res://Map/TileRoom.png" id="1_2cuvm"]
+
+[node name="Pavement" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 91.5)
+scale = Vector2(1, 1.0055555)
+texture = ExtResource("1_2cuvm")
