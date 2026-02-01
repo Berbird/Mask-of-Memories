@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b8lq4g4hrbenf"]
+[gd_scene load_steps=0 format=3 uid="uid://b8lq4g4hrbenf"]
 
 [node name="ChoiceButton" type="Button"]
 offset_right = 8.0

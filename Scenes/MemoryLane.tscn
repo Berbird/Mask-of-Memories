@@ -29,7 +29,7 @@ shader_parameter/color4 = Color(0.76862746, 0.7882353, 0.83137256, 1)
 shader_parameter/color5 = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh0vy"]
-size = Vector2(132, 2)
+size = Vector2(182, 1)
 
 [node name="MemoryLane" type="Node2D"]
 
@@ -87,7 +87,21 @@ target_scene_path = "uid://c24v1xibshb5r"
 memory_id = "asdasd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
-position = Vector2(160, 964)
+position = Vector2(156, 962.5)
+shape = SubResource("RectangleShape2D_sh0vy")
+
+[node name="Trigger2" type="Area2D" parent="."]
+position = Vector2(5, 84)
+script = ExtResource("8_sh0vy")
+target_scene_path = "uid://c24v1xibshb5r"
+memory_id = "asdasd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger2"]
+position = Vector2(156, 854)
+shape = SubResource("RectangleShape2D_sh0vy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Trigger2"]
+position = Vector2(156, 754)
 shape = SubResource("RectangleShape2D_sh0vy")
 
 [editable path="Cain"]
