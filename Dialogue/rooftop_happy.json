@@ -7,21 +7,21 @@
 	{
 		"name": "Cain",
 		"text": "It’s peaceful. I see why you like coming up here so much.",
-		"portrait": ""
+		"portrait": "Cain_Happy"
 	},
 	{
 		"name": "Lyra",
 		"text": "Cain? If I told you the sky was yellow today... would you believe me?",
-		"portrait": "Lyra_Neutral"
+		"portrait": "Lyra_Wink"
 	},
 	{
 		"name": "Cain",
 		"text": "If you say it is, then it is. I trust your eyes more than mine anyway.",
-		"portrait": ""
+		"portrait": "Cain_Happy"
 	},
 	{
 		"name": "Lyra",
 		"text": "...Thank you. That's all I needed to hear.",
-		"portrait": "Lyra_Neutral"
+		"portrait": "Lyra_Happy"
 	}
 ]

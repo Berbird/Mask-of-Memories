@@ -1,15 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqrt0wm5gpiak"]
+[gd_scene load_steps=7 format=3 uid="uid://bkhtmpq64v35o"]
 
 [ext_resource type="Script" uid="uid://dgvc7iurrnl8n" path="res://Scenes/roof_happy.gd" id="1_l5uwf"]
 [ext_resource type="Texture2D" uid="uid://hlqnv7fwx3hb" path="res://Map/Rooftop.png" id="1_xf8ki"]
+[ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_3fryj"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="2_l5uwf"]
-[ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="3_3fryj"]
+[ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="3_3fryj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fryj"]
 size = Vector2(24, 22)
 
 [node name="Roof_Happy" type="Node2D"]
 script = ExtResource("1_l5uwf")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_3fryj")]
+palette_1 = Color(0.627451, 0.3137255, 0.03529412, 1)
+palette_2 = Color(0.79607844, 0.6117647, 0.17254902, 1)
+palette_3 = Color(0.87058824, 0.76862746, 0.2901961, 1)
+palette_4 = Color(0.9254902, 0.89411765, 0.38039216, 1)
+palette_5 = Color(0.95686275, 0.972549, 0.7058824, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(160, 90)

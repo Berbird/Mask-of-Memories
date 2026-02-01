@@ -1,16 +1,12 @@
 extends CanvasLayer
 signal dialogue_finished
 
-var all_dialogue_data = {} # JSON'daki tüm dalları tutar
 var dialogue_queue = []
-var current_node_data = {} # O anki aktif diyalog verisi
-var choice_button_scene = preload("res://Scenes/ChoiceButton.tscn")
 var is_typing = false
 var is_waiting_input = false
 var is_skipping = false
 var current_pitch = 1.0
 var indicator_tween: Tween
-
 
 const TEXT_WIDTH_NARROW = 222.0
 const TEXT_WIDTH_FULL = 260.0
@@ -18,7 +14,7 @@ const INDICATOR_X_NARROW = 224.0
 const INDICATOR_X_FULL = 267.0
 const SOUND_FREQUENCY = 3
 const MAX_LINES = 3
-const MAX_CORRUPTION = 100.0 
+
 var full_text_storage = ""
 var current_char_index = 0
 
@@ -52,8 +48,6 @@ var character_pitches = {
 @onready var name_box = %NameBox
 @onready var name_label = %NameLabel
 @onready var next_indicator = %NextIndicator
-@onready var choice_container = %ChoiceContainer # EKLEDİĞİMİZ SATIR
-@onready var corruption_shade = %CorruptionShade
 
 @onready var audio_cain = %Cain_Blip
 @onready var audio_lyra = %Lyra_Blip
@@ -71,29 +65,16 @@ var current_audio_player = null
 
 func _ready():
 	add_to_group("DialogueSystem")
-	
 	if portrait_rect.material:
 		portrait_rect.material = portrait_rect.material.duplicate()
-	
 	update_portrait_colors()
-	
-	interaction_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT, Control.PRESET_MODE_KEEP_SIZE)
-	interaction_label.grow_horizontal = Control.GROW_DIRECTION_END
-	
-	if interaction_label.get_parent() is Control:
-		interaction_label.get_parent().set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT, Control.PRESET_MODE_KEEP_SIZE)
-		interaction_label.get_parent().grow_horizontal = Control.GROW_DIRECTION_END
 	
 	name_box.hide()
 	portrait_rect.hide()
 	interaction_panel.hide()
-	choice_container.hide()
 	hide_indicator()
 	
 	interaction_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	interaction_label.visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING
-	interaction_label.lines_skipped = 0
-	interaction_label.max_lines_visible = -1
 
 func update_portrait_colors():
 	var mat = portrait_rect.material as ShaderMaterial
@@ -106,9 +87,6 @@ func update_portrait_colors():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") and GameManager.is_dialogue_active:
-		# Eğer seçenekler ekrandaysa, Enter ile geçmeyi engelle
-		if choice_container.visible: return 
-		
 		if is_typing:
 			is_skipping = true
 		elif is_waiting_input:
@@ -117,7 +95,6 @@ func _input(event):
 func start_dialogue(message, char_name = "", portrait_id = ""):
 	GameManager.is_dialogue_active = true
 	interaction_panel.show()
-	choice_container.hide() # Her yeni cümlede temizle
 	full_text_storage = message
 	current_char_index = 0
 	interaction_label.text = ""
@@ -127,13 +104,11 @@ func start_dialogue(message, char_name = "", portrait_id = ""):
 	is_skipping = false
 	hide_indicator()
 	
-	# Karakter ses ayarı
+	current_audio_player = audio_normal
 	if char_name == "Cain": current_audio_player = audio_cain
 	elif char_name == "Lyra": current_audio_player = audio_lyra
 	elif char_name == "Mask": current_audio_player = audio_mask
-	else: current_audio_player = audio_normal
 
-	# İsim kutusu ayarı
 	if char_name != "":
 		name_label.text = char_name
 		name_box.show()
@@ -142,7 +117,6 @@ func start_dialogue(message, char_name = "", portrait_id = ""):
 		name_box.hide()
 		current_pitch = 1.0
 	
-	# Portre ayarı
 	if portrait_id != "" and portraits.has(portrait_id):
 		portrait_rect.texture = portraits[portrait_id]
 		portrait_rect.show()
@@ -154,7 +128,6 @@ func start_dialogue(message, char_name = "", portrait_id = ""):
 		next_indicator.position.x = INDICATOR_X_FULL
 	
 	await get_tree().process_frame
-	await get_tree().process_frame
 	prepare_next_page()
 
 func prepare_next_page():
@@ -162,8 +135,7 @@ func prepare_next_page():
 	interaction_label.text = ""
 	while current_char_index < full_text_storage.length():
 		var next_space_index = full_text_storage.find(" ", current_char_index)
-		if next_space_index == -1:
-			next_space_index = full_text_storage.length()
+		if next_space_index == -1: next_space_index = full_text_storage.length()
 		var word_len = next_space_index - current_char_index
 		var next_chunk = full_text_storage.substr(current_char_index, word_len + 1)
 		interaction_label.text += next_chunk
@@ -183,92 +155,21 @@ func animate_text():
 			interaction_label.visible_characters = total_chars
 		else:
 			interaction_label.visible_characters += 1
-			var char_index = interaction_label.visible_characters - 1
-			if char_index >= 0 and interaction_label.text[char_index] != " ":
-				if interaction_label.visible_characters % SOUND_FREQUENCY == 0:
-					if current_audio_player:
-						current_audio_player.pitch_scale = current_pitch + randf_range(-0.05, 0.05)
-						current_audio_player.play()
+			if interaction_label.visible_characters % SOUND_FREQUENCY == 0:
+				if current_audio_player:
+					current_audio_player.pitch_scale = current_pitch + randf_range(-0.05, 0.05)
+					current_audio_player.play()
 			await get_tree().create_timer(0.035).timeout
 	
 	is_typing = false
-	
-	
-	if current_char_index >= full_text_storage.length() and current_node_data.has("choices"):
-		show_choices(current_node_data["choices"])
-	else:
-		is_waiting_input = true
-		if current_char_index < full_text_storage.length():
-			show_indicator()
-
-# 
-
-
-
-# 1. Seçenekleri ekrana dizen fonksiyon
-func show_choices(choices):
-	is_typing = false
-	is_waiting_input = false
-	
-	for child in choice_container.get_children():
-		child.queue_free()
-	
-	choice_container.show()
-
-	for choice in choices:
-		var btn = choice_button_scene.instantiate()
-		btn.text = choice["text"]
-		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		btn.custom_minimum_size.x = TEXT_WIDTH_FULL
-		
-		# Tıklama olayını bağla
-		btn.pressed.connect(_on_choice_selected.bind(choice))
-		choice_container.add_child(btn)
-
-func _on_choice_selected(choice_data):
-	var impact = choice_data.get("impact", 0)
-	GameManager.corruption_points += impact
-	
-	update_corruption_visuals()
-	
-	if impact > 0:
-		shake_screen()
-	
-	choice_container.hide()
-	
-	var target = choice_data.get("target", "")
-	if all_dialogue_data.has(target):
-		dialogue_queue = all_dialogue_data[target].duplicate()
-		show_next_dialogue_node()
-	else:
-		close_dialogue()
-
-func update_corruption_visuals():
-	var shade = get_node_or_null("%CorruptionShade")
-	if not shade: return
-	
-	var points = float(GameManager.corruption_points)
-	var intensity = clamp(points / 50.0, 0.0, 0.8)
-	
-	shade.visible = true
-	var tween = create_tween()
-	# ColorRect'in boyasını direkt kırmızıya çevirir
-	var target_color = Color(1, 0, 0, intensity)
-	tween.tween_property(shade, "color", target_color, 1.0).set_trans(Tween.TRANS_SINE)
-
-func shake_screen():
-	var tween = create_tween()
-	var orig_pos = interaction_panel.position
-	for i in range(4):
-		tween.tween_property(interaction_panel, "position", orig_pos + Vector2(randf_range(-5, 5), 0), 0.05)
-	tween.tween_property(interaction_panel, "position", orig_pos, 0.05)
-
-
+	is_waiting_input = true
+	if current_char_index < full_text_storage.length():
+		show_indicator()
 
 func handle_dialogue_input():
 	if is_waiting_input:
 		if current_char_index >= full_text_storage.length():
-			show_next_dialogue_node();
+			show_next_dialogue_node()
 		else:
 			is_waiting_input = false
 			is_skipping = false
@@ -279,15 +180,19 @@ func close_dialogue():
 	interaction_panel.hide()
 	name_box.hide()
 	portrait_rect.hide()
-	choice_container.hide()
 	hide_indicator()
 	interaction_label.text = ""
+	
 	GameManager.is_dialogue_active = false
 	GameManager.can_interact = false
-	emit_signal("dialogue_finished")
-	await get_tree().create_timer(0.3).timeout
-	GameManager.can_interact = true
+	
 	dialogue_finished.emit()
+	
+	# Safety check for scene tree during transitions
+	if is_inside_tree():
+		await get_tree().create_timer(0.3).timeout
+	
+	GameManager.can_interact = true
 
 func show_indicator():
 	next_indicator.show()
@@ -307,21 +212,20 @@ func load_dialogue(file_path: String):
 	var json = JSON.new()
 	if json.parse(file.get_as_text()) == OK:
 		var data = json.get_data()
+		# Forced linear conversion: if it was a dictionary with branches, just take the 'start' array
 		if data is Dictionary:
-			all_dialogue_data = data
-			dialogue_queue = all_dialogue_data.get("start", []).duplicate()
+			dialogue_queue = data.get("start", []).duplicate()
 		else:
-			all_dialogue_data = {"start": data}
 			dialogue_queue = data.duplicate()
 		show_next_dialogue_node()
 
 func show_next_dialogue_node():
 	if dialogue_queue.size() > 0:
-		current_node_data = dialogue_queue.pop_front()
+		var node = dialogue_queue.pop_front()
 		start_dialogue(
-			current_node_data.get("text", "..."),
-			current_node_data.get("name", ""),
-			current_node_data.get("portrait", "")
+			node.get("text", "..."),
+			node.get("name", ""),
+			node.get("portrait", "")
 		)
 	else:
 		close_dialogue()

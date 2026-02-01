@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("sfdsa")
 	var dialogue = get_tree().get_first_node_in_group("DialogueSystem")
 	if dialogue:
 		dialogue.load_dialogue("res://Dialogue/rooftop_happy.json")
