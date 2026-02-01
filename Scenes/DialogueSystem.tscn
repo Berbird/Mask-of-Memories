@@ -51,6 +51,17 @@ corner_radius_bottom_left = 1
 layer = 10
 script = ExtResource("1_vgbim")
 
+[node name="CorruptionShade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0)
+
 [node name="UI_Container" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -58,6 +69,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="DialoguePanel" type="Panel" parent="UI_Container"]
 unique_name_in_owner = true
@@ -72,6 +84,7 @@ offset_right = -20.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vgbim")
 
 [node name="Portrait" type="TextureRect" parent="UI_Container/DialoguePanel"]
@@ -149,10 +162,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.24300002
 anchor_top = -1.0
-anchor_right = 1.0
-offset_left = -0.040000916
-offset_right = -0.039978027
-offset_bottom = -2.0239983
+anchor_right = 0.89300007
+anchor_bottom = -0.036000002
+offset_left = -46.04
+offset_top = -52.0
+offset_right = -46.040024
+offset_bottom = -52.008
 
 [node name="Cain_Blip" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true

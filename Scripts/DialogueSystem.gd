@@ -11,13 +11,14 @@ var is_skipping = false
 var current_pitch = 1.0
 var indicator_tween: Tween
 
+
 const TEXT_WIDTH_NARROW = 222.0
 const TEXT_WIDTH_FULL = 260.0
 const INDICATOR_X_NARROW = 224.0
 const INDICATOR_X_FULL = 267.0
 const SOUND_FREQUENCY = 3
 const MAX_LINES = 3
-
+const MAX_CORRUPTION = 100.0 
 var full_text_storage = ""
 var current_char_index = 0
 
@@ -52,6 +53,7 @@ var character_pitches = {
 @onready var name_label = %NameLabel
 @onready var next_indicator = %NextIndicator
 @onready var choice_container = %ChoiceContainer # EKLEDİĞİMİZ SATIR
+@onready var corruption_shade = %CorruptionShade
 
 @onready var audio_cain = %Cain_Blip
 @onready var audio_lyra = %Lyra_Blip
@@ -201,83 +203,38 @@ func animate_text():
 
 # 
 
+
+
+# 1. Seçenekleri ekrana dizen fonksiyon
 func show_choices(choices):
+	is_typing = false
 	is_waiting_input = false
+	
 	for child in choice_container.get_children():
 		child.queue_free()
 	
 	choice_container.show()
-	
-	# Textbox görselini buton için hazırlayalım (Kendi yolunu yaz)
-	var btn_texture = preload("res://Other Art/Palettes/BluePalette.png") # BURAYA KENDİ GÖRSEL YOLUNU YAZ
-	
-	# Stil ayarlarını kodla tanımlıyoruz
-	var style = StyleBoxTexture.new()
-	style.texture = btn_texture
-	# Görselin kenarlarının bozulmaması için (9-slice ayarı)
-	style.texture_margin_left = 10
-	style.texture_margin_right = 10
-	style.texture_margin_top = 5
-	style.texture_margin_bottom = 5
-	# Yazının kenarlara yapışmaması için boşluklar
-	style.content_margin_left = 10
-	style.content_margin_right = 10
-	style.content_margin_top = 5
-	style.content_margin_bottom = 5
 
 	for choice in choices:
-		var btn = Button.new() 
+		var btn = choice_button_scene.instantiate()
 		btn.text = choice["text"]
+		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		btn.custom_minimum_size.x = TEXT_WIDTH_FULL
 		
-		
-		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART 
-		btn.custom_minimum_size.y = 24 
-		btn.size_flags_vertical = Control.SIZE_SHRINK_BEGIN 
-		
-		
-		btn.add_theme_stylebox_override("normal", style)
-		btn.add_theme_stylebox_override("hover", style) 
-		btn.add_theme_stylebox_override("pressed", style) 
-		btn.add_theme_stylebox_override("focus", StyleBoxEmpty.new()) 
-		
-
-		btn.add_theme_color_override("font_color", Color.WHITE)
-		
-	
-		btn.pressed.connect(_on_choice_selected.bind(choice))
-		
-		choice_container.add_child(btn)
-	is_waiting_input = false
-	for child in choice_container.get_children():
-		child.queue_free()
-	
-	choice_container.show()
-	
-	for choice in choices:
-		
-		var btn = choice_button_scene.instantiate() 
-		btn.text = choice["text"]
-		
-		
-		btn.pressed.connect(_on_choice_selected.bind(choice))
-		choice_container.add_child(btn)
-	is_waiting_input = false
-	for child in choice_container.get_children():
-		child.queue_free()
-	
-	choice_container.show()
-	for choice in choices:
-		var btn = Button.new()
-		btn.text = choice["text"]
-		btn.alignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT
+		# Tıklama olayını bağla
 		btn.pressed.connect(_on_choice_selected.bind(choice))
 		choice_container.add_child(btn)
 
 func _on_choice_selected(choice_data):
+	var impact = choice_data.get("impact", 0)
+	GameManager.corruption_points += impact
 	
-	GameManager.corruption_points += choice_data.get("impact", 0)
+	update_corruption_visuals()
+	
+	if impact > 0:
+		shake_screen()
+	
 	choice_container.hide()
-	
 	
 	var target = choice_data.get("target", "")
 	if all_dialogue_data.has(target):
@@ -285,6 +242,26 @@ func _on_choice_selected(choice_data):
 		show_next_dialogue_node()
 	else:
 		close_dialogue()
+
+func update_corruption_visuals():
+	var shade = get_node_or_null("%CorruptionShade")
+	if not shade: return
+	
+	var points = float(GameManager.corruption_points)
+	var intensity = clamp(points / 50.0, 0.0, 0.8)
+	
+	shade.visible = true
+	var tween = create_tween()
+	# ColorRect'in boyasını direkt kırmızıya çevirir
+	var target_color = Color(1, 0, 0, intensity)
+	tween.tween_property(shade, "color", target_color, 1.0).set_trans(Tween.TRANS_SINE)
+
+func shake_screen():
+	var tween = create_tween()
+	var orig_pos = interaction_panel.position
+	for i in range(4):
+		tween.tween_property(interaction_panel, "position", orig_pos + Vector2(randf_range(-5, 5), 0), 0.05)
+	tween.tween_property(interaction_panel, "position", orig_pos, 0.05)
 
 
 
