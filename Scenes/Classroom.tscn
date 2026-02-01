@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://h6g71l0mcfcr"]
+
+[ext_resource type="Texture2D" uid="uid://djvv44v2oxcar" path="res://Map/EmptyRoom.png" id="1_jjrax"]
+[ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="2_285xf"]
+[ext_resource type="PackedScene" uid="uid://twf5vqbnchng" path="res://Objects/Class Objects/Desk.tscn" id="3_ryp0j"]
+[ext_resource type="PackedScene" uid="uid://55vod0i2dk7u" path="res://Objects/Class Objects/Lyra.tscn" id="4_285xf"]
+[ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="5_ryp0j"]
+
+[node name="Classroom" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(159, 92)
+texture = ExtResource("1_jjrax")
+
+[node name="Cain" parent="." instance=ExtResource("2_285xf")]
+position = Vector2(237, 90)
+
+[node name="Lyra" parent="." instance=ExtResource("4_285xf")]
+position = Vector2(208, 67)
+
+[node name="Desk" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(57, 94)
+
+[node name="Desk2" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(81, 94)
+
+[node name="Desk3" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(106, 94)
+
+[node name="Desk4" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(57, 120)
+
+[node name="Desk5" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(82, 120)
+
+[node name="Desk6" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(107, 120)
+
+[node name="Desk7" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(132, 120)
+
+[node name="Desk8" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(131, 94)
+
+[node name="Desk9" parent="." instance=ExtResource("3_ryp0j")]
+position = Vector2(94, 63)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("5_ryp0j")]
