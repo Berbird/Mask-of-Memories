@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bwj0dp6dc0h1d"]
+[gd_scene load_steps=12 format=4 uid="uid://bwj0dp6dc0h1d"]
 
 [ext_resource type="Texture2D" uid="uid://hlqnv7fwx3hb" path="res://Map/Rooftop.png" id="1_0v25q"]
 [ext_resource type="Script" uid="uid://cjv62oump38hp" path="res://Scenes/rooftop.gd" id="1_knhor"]
@@ -21,6 +21,9 @@ shader_parameter/color2 = Color(0.79607844, 0.6117647, 0.17254902, 1)
 shader_parameter/color3 = Color(0.87058824, 0.76862746, 0.2901961, 1)
 shader_parameter/color4 = Color(0.9254902, 0.89411765, 0.38039216, 1)
 shader_parameter/color5 = Color(0.95686275, 0.972549, 0.7058824, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyfg5"]
+size = Vector2(327, 7)
 
 [node name="Rooftop" type="Node2D"]
 script = ExtResource("1_knhor")
@@ -61,6 +64,32 @@ volume_db = 16.755
 
 [node name="ColorRect" parent="CanvasLayer2" index="0"]
 material = SubResource("ShaderMaterial_w076b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(162.5, 64.5)
+shape = SubResource("RectangleShape2D_uyfg5")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(162, 178)
+shape = SubResource("RectangleShape2D_uyfg5")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0, 55)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_uyfg5")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(320, 53)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_uyfg5")
 
 [connection signal="body_entered" from="Lyra/Area2D" to="." method="_on_area_2d_body_entered"]
 

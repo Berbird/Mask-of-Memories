@@ -32,7 +32,8 @@ var portraits = {
 	"Cain_Pensive": preload("res://Characters/Cain/Portraits/Cain_Pensive.png"),
 	"Cain_Sad": preload("res://Characters/Cain/Portraits/Cain_Sad.png"),
 	"Cain_Neutral": preload("res://Characters/Cain/Portraits/Cain_Neutral.png"),
-	"Cain_Happy": preload("res://Characters/Cain/Portraits/Cain_Happy.png")
+	"Cain_Happy": preload("res://Characters/Cain/Portraits/Cain_Happy.png"),
+	"Shadow": preload("res://Characters/Shadows/Shadow.png")
 }
 
 var character_pitches = {
