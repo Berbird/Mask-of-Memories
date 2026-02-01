@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://55vod0i2dk7u"]
+
+[ext_resource type="PackedScene" uid="uid://je4kxf3fp456" path="res://Objects/BaseObject.tscn" id="1_68w1s"]
+[ext_resource type="Texture2D" uid="uid://cfyit5lj8vsrs" path="res://Characters/Lyra/Movement/LyraIdle.png" id="2_nd0rn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68w1s"]
+size = Vector2(21, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd0rn"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7iuf"]
+atlas = ExtResource("2_nd0rn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqs1s"]
+atlas = ExtResource("2_nd0rn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nonox"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7iuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqs1s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="BaseObject" instance=ExtResource("1_68w1s")]
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_68w1s")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_nd0rn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_nonox")
+animation = &"idle"
