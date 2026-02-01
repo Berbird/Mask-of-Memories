@@ -7,7 +7,7 @@
 	{
 		"name": "Cain",
 		"text": "Get away from the edge. It's not safe. Why did you bring the art project up here?",
-		"portrait": ""
+		"portrait": "Cain_Angry"
 	},
 	{
 		"name": "Lyra",
@@ -17,11 +17,11 @@
 	{
 		"name": "Lyra",
 		"text": "But it’s just a shell. Like me. I spend every day 'masking' so they don't see the version of me they talk about in the halls.",
-		"portrait": "Lyra_Neutral"
+		"portrait": "Lyra_Sad"
 	},
 	{
 		"name": "Lyra",
 		"text": "Tell me, Cain... if I take the mask off, is there even a person left underneath? Or am I just... empty?",
-		"portrait": "Lyra_Neutral"
+		"portrait": "Lyra_Empty"
 	}
 ]

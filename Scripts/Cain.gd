@@ -6,16 +6,17 @@ var current_direction = "front"
 @onready var anim_sprite = $AnimatedSprite2D
 
 func _ready():
-	# 1. Get the name of the root node of the current scene
-	var current_scene_name = get_tree().current_scene.name
+	# 1. Get the current scene's name to see if we are in Memory Lane
+	var current_scene = get_tree().current_scene.name
 	
-	# 2. Only teleport if we are in the hub AND the flag is true
-	if current_scene_name == "MemoryLane" and GameManager.is_returning_from_memory:
+	# 2. Only use the GameManager's return position if we are in the correct room
+	if current_scene == "MemoryLane" and GameManager.is_returning_from_memory:
 		global_position = GameManager.last_player_position
 		GameManager.is_returning_from_memory = false
-		print("Repositioned player in Memory Lane")
+		print("Returned to Memory Lane at saved position.")
 	else:
-		print("Standard spawn triggered for: ", current_scene_name)
+		# 3. Hardcoded spawn for every other scene (Jumpscares, Rooftop, etc.)
+		print("Spawned at default scene coordinates.")
 
 
 func _input(event):

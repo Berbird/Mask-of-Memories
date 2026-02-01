@@ -11,18 +11,32 @@ var is_skipping = false
 var current_pitch = 1.0
 var indicator_tween: Tween
 
+
 const TEXT_WIDTH_NARROW = 222.0
 const TEXT_WIDTH_FULL = 260.0
 const INDICATOR_X_NARROW = 224.0
 const INDICATOR_X_FULL = 267.0
 const SOUND_FREQUENCY = 3
 const MAX_LINES = 3
-
+const MAX_CORRUPTION = 100.0 
 var full_text_storage = ""
 var current_char_index = 0
 
 var portraits = {
-	"Lyra_Neutral": preload("res://Characters/Lyra/Portraits/Lyra_Neutral.png")
+	"Lyra_Neutral": preload("res://Characters/Lyra/Portraits/Lyra_Neutral.png"),
+	"Lyra_Wink": preload("res://Characters/Lyra/Portraits/Lyra_Wink.png"),
+	"Lyra_Angry": preload("res://Characters/Lyra/Portraits/Lyra_Angry.png"),
+	"Lyra_Empty": preload("res://Characters/Lyra/Portraits/Lyra_Empty.png"),
+	"Lyra_Surprised": preload("res://Characters/Lyra/Portraits/Lyra_Surprised.png"),
+	"Lyra_Sad": preload("res://Characters/Lyra/Portraits/Lyra_Sad.png"),
+	"Lyra_Happy": preload("res://Characters/Lyra/Portraits/Lyra_Happy.png"),
+	"Cain_Surprised": preload("res://Characters/Cain/Portraits/Cain_Surprised.png"),
+	"Cain_Angry": preload("res://Characters/Cain/Portraits/Cain_Angry.png"),
+	"Cain_Empty": preload("res://Characters/Cain/Portraits/Cain_Empty.png"),
+	"Cain_Pensive": preload("res://Characters/Cain/Portraits/Cain_Pensive.png"),
+	"Cain_Sad": preload("res://Characters/Cain/Portraits/Cain_Sad.png"),
+	"Cain_Neutral": preload("res://Characters/Cain/Portraits/Cain_Neutral.png"),
+	"Cain_Happy": preload("res://Characters/Cain/Portraits/Cain_Happy.png")
 }
 
 var character_pitches = {
@@ -39,6 +53,7 @@ var character_pitches = {
 @onready var name_label = %NameLabel
 @onready var next_indicator = %NextIndicator
 @onready var choice_container = %ChoiceContainer # EKLEDİĞİMİZ SATIR
+@onready var corruption_shade = %CorruptionShade
 
 @onready var audio_cain = %Cain_Blip
 @onready var audio_lyra = %Lyra_Blip
@@ -47,8 +62,21 @@ var character_pitches = {
 
 var current_audio_player = null
 
+@export_group("Portrait Palette")
+@export var palette_1: Color = Color("004e96")
+@export var palette_2: Color = Color("52b2cf")
+@export var palette_3: Color = Color("7ec4cf")
+@export var palette_4: Color = Color("93e7e7")
+@export var palette_5: Color = Color("c8f4f4")
+
 func _ready():
 	add_to_group("DialogueSystem")
+	
+	if portrait_rect.material:
+		portrait_rect.material = portrait_rect.material.duplicate()
+	
+	update_portrait_colors()
+	
 	interaction_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT, Control.PRESET_MODE_KEEP_SIZE)
 	interaction_label.grow_horizontal = Control.GROW_DIRECTION_END
 	
@@ -59,12 +87,22 @@ func _ready():
 	name_box.hide()
 	portrait_rect.hide()
 	interaction_panel.hide()
-	choice_container.hide() # BAŞLANGIÇTA GİZLİ
+	choice_container.hide()
 	hide_indicator()
+	
 	interaction_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	interaction_label.visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING
 	interaction_label.lines_skipped = 0
 	interaction_label.max_lines_visible = -1
+
+func update_portrait_colors():
+	var mat = portrait_rect.material as ShaderMaterial
+	if mat:
+		mat.set_shader_parameter("color1", palette_1)
+		mat.set_shader_parameter("color2", palette_2)
+		mat.set_shader_parameter("color3", palette_3)
+		mat.set_shader_parameter("color4", palette_4)
+		mat.set_shader_parameter("color5", palette_5)
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") and GameManager.is_dialogue_active:
@@ -165,83 +203,38 @@ func animate_text():
 
 # 
 
+
+
+# 1. Seçenekleri ekrana dizen fonksiyon
 func show_choices(choices):
+	is_typing = false
 	is_waiting_input = false
+	
 	for child in choice_container.get_children():
 		child.queue_free()
 	
 	choice_container.show()
-	
-	# Textbox görselini buton için hazırlayalım (Kendi yolunu yaz)
-	var btn_texture = preload("res://Other Art/Palettes/BluePalette.png") # BURAYA KENDİ GÖRSEL YOLUNU YAZ
-	
-	# Stil ayarlarını kodla tanımlıyoruz
-	var style = StyleBoxTexture.new()
-	style.texture = btn_texture
-	# Görselin kenarlarının bozulmaması için (9-slice ayarı)
-	style.texture_margin_left = 10
-	style.texture_margin_right = 10
-	style.texture_margin_top = 5
-	style.texture_margin_bottom = 5
-	# Yazının kenarlara yapışmaması için boşluklar
-	style.content_margin_left = 10
-	style.content_margin_right = 10
-	style.content_margin_top = 5
-	style.content_margin_bottom = 5
 
 	for choice in choices:
-		var btn = Button.new() 
+		var btn = choice_button_scene.instantiate()
 		btn.text = choice["text"]
+		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		btn.custom_minimum_size.x = TEXT_WIDTH_FULL
 		
-		
-		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART 
-		btn.custom_minimum_size.y = 24 
-		btn.size_flags_vertical = Control.SIZE_SHRINK_BEGIN 
-		
-		
-		btn.add_theme_stylebox_override("normal", style)
-		btn.add_theme_stylebox_override("hover", style) 
-		btn.add_theme_stylebox_override("pressed", style) 
-		btn.add_theme_stylebox_override("focus", StyleBoxEmpty.new()) 
-		
-
-		btn.add_theme_color_override("font_color", Color.WHITE)
-		
-	
-		btn.pressed.connect(_on_choice_selected.bind(choice))
-		
-		choice_container.add_child(btn)
-	is_waiting_input = false
-	for child in choice_container.get_children():
-		child.queue_free()
-	
-	choice_container.show()
-	
-	for choice in choices:
-		
-		var btn = choice_button_scene.instantiate() 
-		btn.text = choice["text"]
-		
-		
-		btn.pressed.connect(_on_choice_selected.bind(choice))
-		choice_container.add_child(btn)
-	is_waiting_input = false
-	for child in choice_container.get_children():
-		child.queue_free()
-	
-	choice_container.show()
-	for choice in choices:
-		var btn = Button.new()
-		btn.text = choice["text"]
-		btn.alignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT
+		# Tıklama olayını bağla
 		btn.pressed.connect(_on_choice_selected.bind(choice))
 		choice_container.add_child(btn)
 
 func _on_choice_selected(choice_data):
+	var impact = choice_data.get("impact", 0)
+	GameManager.corruption_points += impact
 	
-	GameManager.corruption_points += choice_data.get("impact", 0)
+	update_corruption_visuals()
+	
+	if impact > 0:
+		shake_screen()
+	
 	choice_container.hide()
-	
 	
 	var target = choice_data.get("target", "")
 	if all_dialogue_data.has(target):
@@ -249,6 +242,26 @@ func _on_choice_selected(choice_data):
 		show_next_dialogue_node()
 	else:
 		close_dialogue()
+
+func update_corruption_visuals():
+	var shade = get_node_or_null("%CorruptionShade")
+	if not shade: return
+	
+	var points = float(GameManager.corruption_points)
+	var intensity = clamp(points / 50.0, 0.0, 0.8)
+	
+	shade.visible = true
+	var tween = create_tween()
+	# ColorRect'in boyasını direkt kırmızıya çevirir
+	var target_color = Color(1, 0, 0, intensity)
+	tween.tween_property(shade, "color", target_color, 1.0).set_trans(Tween.TRANS_SINE)
+
+func shake_screen():
+	var tween = create_tween()
+	var orig_pos = interaction_panel.position
+	for i in range(4):
+		tween.tween_property(interaction_panel, "position", orig_pos + Vector2(randf_range(-5, 5), 0), 0.05)
+	tween.tween_property(interaction_panel, "position", orig_pos, 0.05)
 
 
 

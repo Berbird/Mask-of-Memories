@@ -1,14 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://h6g71l0mcfcr"]
+[gd_scene load_steps=14 format=3 uid="uid://h6g71l0mcfcr"]
 
 [ext_resource type="Texture2D" uid="uid://djvv44v2oxcar" path="res://Map/EmptyRoom.png" id="1_jjrax"]
-[ext_resource type="Script" uid="uid://ee05oik48vaf" path="res://Scenes/classroom.gd" id="1_xt1a6"]
+[ext_resource type="Script" path="res://Scenes/classroom.gd" id="1_xt1a6"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="2_285xf"]
 [ext_resource type="PackedScene" uid="uid://twf5vqbnchng" path="res://Objects/Class Objects/Desk.tscn" id="3_ryp0j"]
-[ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="4_xt1a6"]
+[ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="4_xt1a6"]
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="5_ryp0j"]
+[ext_resource type="Shader" uid="uid://b61edwxry5cc5" path="res://Shaders/Portrait.gdshader" id="7_tejth"]
+[ext_resource type="PackedScene" uid="uid://bcr4ycpo2jbs3" path="res://Scenes/PostProcessLayer.tscn" id="8_712lx"]
+[ext_resource type="Shader" uid="uid://lslwev7auj2" path="res://Shaders/PaletteLimiter.gdshader" id="9_al5fb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3g6n"]
 size = Vector2(30, 28)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tejth"]
+shader = ExtResource("7_tejth")
+shader_parameter/color1 = Color(0.9067275, 0.59398067, 0.77929354, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/color3 = Color(0, 0, 0, 1)
+shader_parameter/color4 = Color(0, 0, 0, 1)
+shader_parameter/color5 = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cp7ml"]
+shader = ExtResource("9_al5fb")
+shader_parameter/color1 = Color(0.05882353, 0.29411766, 0.5372549, 1)
+shader_parameter/color2 = Color(0.2627451, 0.63529414, 0.7490196, 1)
+shader_parameter/color3 = Color(0.40784314, 0.7607843, 0.827451, 1)
+shader_parameter/color4 = Color(0.5254902, 0.8980392, 0.8784314, 1)
+shader_parameter/color5 = Color(0.7921569, 0.972549, 0.92941177, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_712lx"]
+size = Vector2(8, 260)
 
 [node name="Classroom" type="Node2D"]
 script = ExtResource("1_xt1a6")
@@ -19,6 +41,9 @@ texture = ExtResource("1_jjrax")
 
 [node name="Cain" parent="." instance=ExtResource("2_285xf")]
 position = Vector2(237, 90)
+
+[node name="Camera2D" parent="Cain" index="3"]
+limit_bottom = 180
 
 [node name="Node2D" parent="." instance=ExtResource("4_xt1a6")]
 position = Vector2(173, 97)
@@ -57,4 +82,44 @@ position = Vector2(94, 63)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("5_ryp0j")]
 
+[node name="Portrait" parent="CanvasLayer/UI_Container/DialoguePanel" index="0"]
+material = SubResource("ShaderMaterial_tejth")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("8_712lx")]
+
+[node name="ColorRect" parent="CanvasLayer2" index="0"]
+material = SubResource("ShaderMaterial_cp7ml")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(29, 115)
+shape = SubResource("RectangleShape2D_712lx")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(161, 38)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_712lx")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(161, 169)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_712lx")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(292, 111)
+shape = SubResource("RectangleShape2D_712lx")
+
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="Cain"]
+[editable path="Desk3"]
+[editable path="CanvasLayer"]
+[editable path="CanvasLayer2"]
