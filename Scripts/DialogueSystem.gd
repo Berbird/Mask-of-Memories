@@ -194,6 +194,7 @@ func close_dialogue():
 	GameManager.can_interact = false
 	await get_tree().create_timer(0.3).timeout
 	GameManager.can_interact = true
+	dialogue_finished.emit()
 
 func show_indicator():
 	next_indicator.show()
