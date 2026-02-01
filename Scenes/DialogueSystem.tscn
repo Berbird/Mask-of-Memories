@@ -143,6 +143,17 @@ theme_override_font_sizes/font_size = 12
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ChoiceContainer" type="VBoxContainer" parent="UI_Container/DialoguePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24300002
+anchor_top = -1.0
+anchor_right = 1.0
+offset_left = -0.040000916
+offset_right = -0.039978027
+offset_bottom = -2.0239983
+
 [node name="Cain_Blip" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_3tw4l")
