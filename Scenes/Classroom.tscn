@@ -15,6 +15,9 @@ texture = ExtResource("1_jjrax")
 [node name="Cain" parent="." instance=ExtResource("2_285xf")]
 position = Vector2(237, 90)
 
+[node name="Camera2D" parent="Cain" index="3"]
+limit_bottom = 180
+
 [node name="Lyra" parent="." instance=ExtResource("4_285xf")]
 position = Vector2(208, 67)
 
@@ -46,3 +49,5 @@ position = Vector2(131, 94)
 position = Vector2(94, 63)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("5_ryp0j")]
+
+[editable path="Cain"]

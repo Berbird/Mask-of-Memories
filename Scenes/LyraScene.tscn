@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://l8manebjhlc7"]
+
+[ext_resource type="Texture2D" uid="uid://cfyit5lj8vsrs" path="res://Characters/Lyra/Movement/LyraIdle.png" id="1_cwy88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7iuf"]
+atlas = ExtResource("1_cwy88")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqs1s"]
+atlas = ExtResource("1_cwy88")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cwy88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7iuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqs1s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cwy88")
+animation = &"idle"
