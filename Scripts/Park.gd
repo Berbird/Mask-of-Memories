@@ -7,6 +7,7 @@ func _ready() -> void:
 	if dialogue:
 		dialogue.load_dialogue("res://Dialogue/park1.json")
 		await dialogue.dialogue_finished
+		get_tree().change_scene_to_file("res://Scenes/MemoryLane.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -13,7 +13,7 @@ func trigger_interaction():
 	if dialogue:
 		dialogue.load_dialogue("res://Dialogue/classroom_dialogue.json")
 		await dialogue.dialogue_finished
-	# Call your dialogue or jumpscare here
+		get_tree().change_scene_to_file("res://Scenes/MemoryLane.tscn")
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
