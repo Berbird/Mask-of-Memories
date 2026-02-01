@@ -1,5 +1,5 @@
 extends CanvasLayer
-
+signal dialogue_finished
 var dialogue_queue = []
 var is_typing = false
 var is_waiting_input = false
@@ -218,6 +218,7 @@ func load_dialogue(file_path: String):
 	var parse_result = json.parse(json_string)
 	
 	if parse_result == OK:
+		dialogue_queue.clear()
 		dialogue_queue = json.get_data()
 		show_next_dialogue_node()
 	else:
@@ -227,7 +228,7 @@ func show_next_dialogue_node():
 	if dialogue_queue.size() > 0:
 		var current_node = dialogue_queue.pop_front()
 		start_dialogue(
-			current_node.get("text", ""),
+			current_node.get("text", "..."),
 			current_node.get("name", ""),
 			current_node.get("portrait", "")
 		)
