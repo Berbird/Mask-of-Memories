@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://hlqnv7fwx3hb" path="res://Map/Rooftop.png" id="1_0v25q"]
 [ext_resource type="Script" uid="uid://cjv62oump38hp" path="res://Scenes/rooftop.gd" id="1_knhor"]
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_e2lb8"]
-[ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="3_edbyn"]
+[ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="3_edbyn"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="4_knhor"]
-[ext_resource type="AudioStream" uid="uid://dysv1laxnunrj" path="res://Sounds/Music/fall.mp3" id="6_wxn3a"]
+[ext_resource type="AudioStream" uid="uid://5ig738vxee8p" path="res://Sounds/Music/fall.mp3" id="6_wxn3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxn3a"]
 size = Vector2(27, 9)
@@ -34,5 +34,7 @@ position = Vector2(220, 153)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_wxn3a")
 volume_db = 16.755
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [connection signal="body_entered" from="Lyra/Area2D" to="." method="_on_area_2d_body_entered"]
