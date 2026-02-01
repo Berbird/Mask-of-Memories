@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bpi33ejb10dct" path="res://Map/TileRoom.png" id="1_tgvf0"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="2_2fh65"]
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_p6xxt"]
-[ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="3_7blpo"]
+[ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="3_7blpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6xxt"]
 size = Vector2(25, 25)
