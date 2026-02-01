@@ -13,6 +13,7 @@ func _ready():
 		body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D):
+	print("Interaction!")
 	if body is CharacterBody2D:
 		if memory_id != "":
 			GameManager.set_flag(memory_id, true)

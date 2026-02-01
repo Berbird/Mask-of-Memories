@@ -93,41 +93,41 @@ shape = SubResource("RectangleShape2D_sh0vy")
 [node name="Trigger2" type="Area2D" parent="."]
 position = Vector2(5, 84)
 script = ExtResource("8_sh0vy")
-target_scene_path = "uid://b76lh1r1hhrl2"
+target_scene_path = "uid://h6g71l0mcfcr"
 memory_id = "Memory2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger2"]
-position = Vector2(157, 812)
+position = Vector2(156, 791)
 shape = SubResource("RectangleShape2D_sh0vy")
 
 [node name="Trigger3" type="Area2D" parent="."]
 position = Vector2(5, 84)
 script = ExtResource("8_sh0vy")
-target_scene_path = "uid://bwj0dp6dc0h1d"
+target_scene_path = "uid://dn8qrks0nd5cf"
 memory_id = "Memory3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger3"]
-position = Vector2(155, 619)
+position = Vector2(157, 613)
 shape = SubResource("RectangleShape2D_sh0vy")
 
 [node name="Trigger4" type="Area2D" parent="."]
 position = Vector2(5, 84)
 script = ExtResource("8_sh0vy")
-target_scene_path = "uid://dqrt0wm5gpiak"
-memory_id = "Memory4"
+target_scene_path = "uid://c6nqcdkjnmn5h"
+memory_id = "Memory1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger4"]
-position = Vector2(152, 442)
+position = Vector2(157, 438)
 shape = SubResource("RectangleShape2D_sh0vy")
 
 [node name="Trigger5" type="Area2D" parent="."]
 position = Vector2(5, 84)
 script = ExtResource("8_sh0vy")
 target_scene_path = "uid://c24v1xibshb5r"
-memory_id = "Memory5"
+memory_id = "Memory1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger5"]
-position = Vector2(156, 237)
+position = Vector2(160, 104)
 shape = SubResource("RectangleShape2D_sh0vy")
 
 [editable path="Cain"]

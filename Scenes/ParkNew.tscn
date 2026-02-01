@@ -1,0 +1,152 @@
+[gd_scene load_steps=20 format=3 uid="uid://dn8qrks0nd5cf"]
+
+[ext_resource type="Script" uid="uid://m345s6ydh5fe" path="res://Scripts/Park.gd" id="1_wmcew"]
+[ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_fppsc"]
+[ext_resource type="Texture2D" uid="uid://bpi33ejb10dct" path="res://Map/TileRoom.png" id="3_ss1pf"]
+[ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="4_djf3u"]
+[ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="5_fx7ek"]
+[ext_resource type="PackedScene" uid="uid://bcr4ycpo2jbs3" path="res://Scenes/PostProcessLayer.tscn" id="6_agdie"]
+[ext_resource type="Shader" uid="uid://lslwev7auj2" path="res://Shaders/PaletteLimiter.gdshader" id="7_0j2t8"]
+[ext_resource type="Texture2D" uid="uid://bu047v1sdsmq3" path="res://Characters/Shadows/ShadowGirl.png" id="8_qxgin"]
+[ext_resource type="Texture2D" uid="uid://cm71xmbe6qrci" path="res://Characters/Shadows/ShadowMan.png" id="9_40p85"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6xxt"]
+size = Vector2(25, 25)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3mvjm"]
+shader = ExtResource("7_0j2t8")
+shader_parameter/color1 = Color(0.52156866, 0.101960786, 0.101960786, 1)
+shader_parameter/color2 = Color(0.6431373, 0.25490198, 0.20392157, 1)
+shader_parameter/color3 = Color(0.75686276, 0.41568628, 0.30980393, 1)
+shader_parameter/color4 = Color(0.87058824, 0.627451, 0.49411765, 1)
+shader_parameter/color5 = Color(0.972549, 0.7921569, 0.627451, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhmml"]
+atlas = ExtResource("8_qxgin")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l7u3"]
+atlas = ExtResource("8_qxgin")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g3w20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhmml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l7u3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t40e"]
+atlas = ExtResource("9_40p85")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tki03"]
+atlas = ExtResource("9_40p85")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x67wp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t40e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tki03")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm4cq"]
+size = Vector2(35, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mqpy"]
+size = Vector2(320, 6)
+
+[node name="Park" type="Node2D"]
+script = ExtResource("1_wmcew")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_fppsc")]
+palette_1 = Color(0.52156866, 0.101960786, 0.101960786, 1)
+palette_2 = Color(0.6431373, 0.25490198, 0.20392157, 1)
+palette_3 = Color(0.75686276, 0.41568628, 0.30980393, 1)
+palette_4 = Color(0.87058824, 0.627451, 0.49411765, 1)
+palette_5 = Color(0.972549, 0.7921569, 0.627451, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 91)
+texture = ExtResource("3_ss1pf")
+
+[node name="Cain" parent="." instance=ExtResource("4_djf3u")]
+position = Vector2(217, 53)
+
+[node name="Camera2D" parent="Cain" index="3"]
+limit_bottom = 180
+
+[node name="Lyra" parent="." instance=ExtResource("5_fx7ek")]
+position = Vector2(86, 129)
+
+[node name="Area2D" type="Area2D" parent="Lyra"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lyra/Area2D"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_p6xxt")
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("6_agdie")]
+
+[node name="ColorRect" parent="CanvasLayer2" index="0"]
+material = SubResource("ShaderMaterial_3mvjm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(122, 56)
+sprite_frames = SubResource("SpriteFrames_g3w20")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(140, 56)
+sprite_frames = SubResource("SpriteFrames_x67wp")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(131.5, 56)
+shape = SubResource("RectangleShape2D_vm4cq")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(160, 179)
+shape = SubResource("RectangleShape2D_0mqpy")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(160, 3)
+shape = SubResource("RectangleShape2D_0mqpy")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(140, -3.0000057)
+shape = SubResource("RectangleShape2D_0mqpy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4/CollisionShape2D"]
+position = Vector2(-31.000015, -314)
+shape = SubResource("RectangleShape2D_0mqpy")
+
+[connection signal="body_entered" from="Lyra/Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="Cain"]
+[editable path="CanvasLayer2"]
