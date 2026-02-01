@@ -14,6 +14,7 @@ func _ready() -> void:
 	await trigger_glitch_scare()
 	
 	get_viewport().get_camera_2d().offset = Vector2(0, 0)
+	get_tree().change_scene_to_file("res://Scenes/MemoryLane.tscn")
 
 func trigger_scare_dialogue():
 	# Finds the dialogue system to add context to the scare
@@ -21,7 +22,7 @@ func trigger_scare_dialogue():
 	if dialogue:
 		dialogue.load_dialogue("res://Dialogue/memory_1.json")
 		await dialogue.dialogue_finished
-	print("Dialogue complete. Moving to next sequence.")
+		
 func trigger_glitch_scare():
 	await apply_camera_shake(4)
 	# 1. Flash the entity rapidly to make it look unstable

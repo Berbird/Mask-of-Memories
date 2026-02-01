@@ -19,16 +19,28 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			# 2. Wait for the FINISHED signal 
 			# Note: Ensure dialogue_finished is emitted in close_dialogue()
 			await dialogue.dialogue_finished
+			await get_tree().create_timer(0.5).timeout
+			
+			# --- SECOND CONVERSATION ---
+			# We use the same 'dialogue' variable. 
+			# Calling this will trigger a NEW 'dialogue_finished' signal later.
 			dialogue.load_dialogue("res://Dialogue/rooftop2.json")
 			await dialogue.dialogue_finished
+		
 			# 3. Play the audio
-			if sfx_player:
-				if sfx_player.stream:
-					sfx_player.play()
-					print("JUMPSCARE: Audio Playing")
-				else:
-					print("Error: Audio node found but NO STREAM assigned.")
+		if sfx_player:
+			if sfx_player.stream:
+				sfx_player.play()
+				print("JUMPSCARE: Audio Playing")
+				var tween = create_tween()
+				tween.tween_property($CanvasModulate, "color", Color(0, 0, 0, 1), 1).set_trans(Tween.TRANS_CUBIC)
+				await get_tree().create_timer(5).timeout
+				get_tree().change_scene_to_file("res://Scenes/MemoryLane.tscn")
 			else:
-				print("Error: AudioStreamPlayer2D node is NULL.")
+				print("Error: Audio node found but NO STREAM assigned.")
+		else:
+			print("Error: AudioStreamPlayer2D node is NULL.")
+			
+			
 		
 			

@@ -19,3 +19,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if dialogue:
 		dialogue.load_dialogue("res://Dialogue/park2.json")
 		await dialogue.dialogue_finished
+		get_tree().change_scene_to_file("res://Scenes/MemoryLane.tscn")
