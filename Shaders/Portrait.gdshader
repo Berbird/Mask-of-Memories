@@ -1,4 +1,3 @@
-
 shader_type canvas_item;
 
 uniform vec4 color1 : source_color;
@@ -8,21 +7,21 @@ uniform vec4 color4 : source_color;
 uniform vec4 color5 : source_color;
 
 void fragment() {
-	vec4 curr_color = texture(TEXTURE, UV);
-	
-	float avg = (curr_color.r + curr_color.g + curr_color.b) / 3.0;
-	
-	if (avg < 0.125) {
-		COLOR = color1;
-	} else if (avg < 0.375) {
-		COLOR = color2;
-	} else if (avg < 0.625) {
-		COLOR = color3;
-	} else if (avg < 0.875) {
-		COLOR = color4;
+	vec4 tex_color = texture(TEXTURE, UV);
+	float b = max(tex_color.r, max(tex_color.g, tex_color.b));
+	vec4 res;
+
+	if (b < 0.2) {
+		res = color1;
+	} else if (b < 0.4) {
+		res = color2;
+	} else if (b < 0.6) {
+		res = color3;
+	} else if (b < 0.8) {
+		res = color4;
 	} else {
-		COLOR = color5;
+		res = color5;
 	}
-	
-	COLOR.a = curr_color.a;
+
+	COLOR = vec4(res.rgb, tex_color.a);
 }

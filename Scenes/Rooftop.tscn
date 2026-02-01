@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://bwj0dp6dc0h1d"]
 
 [ext_resource type="Texture2D" uid="uid://hlqnv7fwx3hb" path="res://Map/Rooftop.png" id="1_0v25q"]
-[ext_resource type="Script" uid="uid://cjv62oump38hp" path="res://Scenes/rooftop.gd" id="1_knhor"]
+[ext_resource type="Script" path="res://Scenes/rooftop.gd" id="1_knhor"]
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_e2lb8"]
 [ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="3_edbyn"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="4_knhor"]
@@ -20,6 +20,11 @@ position = Vector2(160, 91)
 texture = ExtResource("1_0v25q")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_e2lb8")]
+palette_1 = Color(0.627451, 0.3137255, 0.03529412, 1)
+palette_2 = Color(0.79607844, 0.6117647, 0.17254902, 1)
+palette_3 = Color(0.87058824, 0.76862746, 0.2901961, 1)
+palette_4 = Color(0.9254902, 0.89411765, 0.38039216, 1)
+palette_5 = Color(0.95686275, 0.972549, 0.7058824, 1)
 
 [node name="Lyra" parent="." instance=ExtResource("3_edbyn")]
 position = Vector2(153, 62)
@@ -33,6 +38,9 @@ shape = SubResource("RectangleShape2D_wxn3a")
 [node name="Cain" parent="." instance=ExtResource("4_knhor")]
 position = Vector2(220, 153)
 
+[node name="Camera2D" parent="Cain" index="3"]
+limit_bottom = 180
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamMP3_knhor")
 volume_db = 16.755
@@ -40,3 +48,6 @@ volume_db = 16.755
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [connection signal="body_entered" from="Lyra/Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="Cain"]
+[editable path="CanvasLayer2"]

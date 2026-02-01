@@ -21,7 +21,6 @@ buses/default_bus_layout="res://Sounds/SFX/default_bus_layout.tres"
 [autoload]
 
 GameManager="*res://Scripts/GameManager.gd"
-DialogueSystem="*res://Scenes/DialogueSystem.tscn"
 
 [display]
 

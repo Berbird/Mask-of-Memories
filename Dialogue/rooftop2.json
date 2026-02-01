@@ -2,26 +2,26 @@
 	{
 		"name": "Cain",
 		"text": "I mean—it's just a lot, Lyra! Every day is some new crisis. It's exhausting for me too, okay?",
-		"portrait": ""
+		"portrait": "Cain_Angry"
 	},
 	{
 		"name": "Lyra",
 		"text": "...",
-		"portrait": "Lyra_Neutral"
+		"portrait": "Lyra_Empty"
 	},
 	{
 		"name": "Lyra",
 		"text": "Oh. I didn't realize I was... a chore.",
-		"portrait": "Lyra_Neutral"
+		"portrait": "Lyra_Empty"
 	},
 	{
 		"name": "Cain",
 		"text": "No! That’s not what I meant. I’m just stressed about the project, Lyra, wait!",
-		"portrait": ""
+		"portrait": "Cain_Sad"
 	},
 	{
 		"name": "Lyra",
 		"text": "You're right. It is exhausting. Let's make it easier for everyone.",
-		"portrait": "Lyra_Neutral"
+		"portrait": "Lyra_Empty"
 	}
 ]

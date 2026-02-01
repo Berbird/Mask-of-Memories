@@ -23,7 +23,20 @@ var full_text_storage = ""
 var current_char_index = 0
 
 var portraits = {
-	"Lyra_Neutral": preload("res://Characters/Lyra/Portraits/Lyra_Neutral.png")
+	"Lyra_Neutral": preload("res://Characters/Lyra/Portraits/Lyra_Neutral.png"),
+	"Lyra_Wink": preload("res://Characters/Lyra/Portraits/Lyra_Wink.png"),
+	"Lyra_Angry": preload("res://Characters/Lyra/Portraits/Lyra_Angry.png"),
+	"Lyra_Empty": preload("res://Characters/Lyra/Portraits/Lyra_Empty.png"),
+	"Lyra_Surprised": preload("res://Characters/Lyra/Portraits/Lyra_Surprised.png"),
+	"Lyra_Sad": preload("res://Characters/Lyra/Portraits/Lyra_Sad.png"),
+	"Lyra_Happy": preload("res://Characters/Lyra/Portraits/Lyra_Happy.png"),
+	"Cain_Surprised": preload("res://Characters/Cain/Portraits/Cain_Surprised.png"),
+	"Cain_Angry": preload("res://Characters/Cain/Portraits/Cain_Angry.png"),
+	"Cain_Empty": preload("res://Characters/Cain/Portraits/Cain_Empty.png"),
+	"Cain_Pensive": preload("res://Characters/Cain/Portraits/Cain_Pensive.png"),
+	"Cain_Sad": preload("res://Characters/Cain/Portraits/Cain_Sad.png"),
+	"Cain_Neutral": preload("res://Characters/Cain/Portraits/Cain_Neutral.png"),
+	"Cain_Happy": preload("res://Characters/Cain/Portraits/Cain_Happy.png")
 }
 
 var character_pitches = {
@@ -49,8 +62,21 @@ var character_pitches = {
 
 var current_audio_player = null
 
+@export_group("Portrait Palette")
+@export var palette_1: Color = Color("004e96")
+@export var palette_2: Color = Color("52b2cf")
+@export var palette_3: Color = Color("7ec4cf")
+@export var palette_4: Color = Color("93e7e7")
+@export var palette_5: Color = Color("c8f4f4")
+
 func _ready():
 	add_to_group("DialogueSystem")
+	
+	if portrait_rect.material:
+		portrait_rect.material = portrait_rect.material.duplicate()
+	
+	update_portrait_colors()
+	
 	interaction_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT, Control.PRESET_MODE_KEEP_SIZE)
 	interaction_label.grow_horizontal = Control.GROW_DIRECTION_END
 	
@@ -61,12 +87,22 @@ func _ready():
 	name_box.hide()
 	portrait_rect.hide()
 	interaction_panel.hide()
-	choice_container.hide() # BAŞLANGIÇTA GİZLİ
+	choice_container.hide()
 	hide_indicator()
+	
 	interaction_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	interaction_label.visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING
 	interaction_label.lines_skipped = 0
 	interaction_label.max_lines_visible = -1
+
+func update_portrait_colors():
+	var mat = portrait_rect.material as ShaderMaterial
+	if mat:
+		mat.set_shader_parameter("color1", palette_1)
+		mat.set_shader_parameter("color2", palette_2)
+		mat.set_shader_parameter("color3", palette_3)
+		mat.set_shader_parameter("color4", palette_4)
+		mat.set_shader_parameter("color5", palette_5)
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") and GameManager.is_dialogue_active:
