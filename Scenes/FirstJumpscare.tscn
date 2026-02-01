@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq6epf41fjjuk"]
+
+[ext_resource type="PackedScene" uid="uid://5qhmbcgh4nlk" path="res://Scenes/JumpScareMask.tscn" id="1_ko0a1"]
+[ext_resource type="AudioStream" uid="uid://chcsg3spjg32b" path="res://Sounds/Music/jumpscare.mp3" id="1_sowp3"]
+[ext_resource type="Script" uid="uid://cb5iutl5au1s" path="res://Scenes/jump_scare_mask.gd" id="2_6ys1h"]
+[ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="3_sowp3"]
+
+[node name="FirstJumpscare" type="Node2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-3, -4)
+stream = ExtResource("1_sowp3")
+volume_db = 0.18
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 319.0
+offset_bottom = 179.0
+color = Color(0.9691369, 0.9691369, 0.9691368, 1)
+
+[node name="MaskJumpScare" parent="." instance=ExtResource("1_ko0a1")]
+position = Vector2(-3, -4)
+script = ExtResource("2_6ys1h")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_sowp3")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(161, 91)

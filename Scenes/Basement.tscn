@@ -1,7 +1,7 @@
 [gd_scene load_steps=87 format=3 uid="uid://c24v1xibshb5r"]
 
-[ext_resource type="PackedScene" uid="uid://bwf7xypim7j6a" path="res://3D/basement.glb" id="1_1irx4"]
-[ext_resource type="PackedScene" uid="uid://fkai8tag7f18" path="res://Scenes/Player.tscn" id="2_863dn"]
+[ext_resource type="PackedScene" uid="uid://bwf7xypim7j6a" path="res://3d/basement.glb" id="1_1irx4"]
+[ext_resource type="PackedScene" uid="uid://fkai8tag7f18" path="res://Scenes/player.tscn" id="2_863dn"]
 [ext_resource type="Script" uid="uid://2kggh7cqgpee" path="res://Scripts/Basement.gd" id="2_sqi4h"]
 [ext_resource type="PackedScene" uid="uid://cx6moxht3y57g" path="res://Other Art/Masks/simple_comedy_mask.glb" id="3_863dn"]
 [ext_resource type="Script" uid="uid://cwt1yeugw13at" path="res://Scripts/Omni_Light_3D.gd" id="3_vvtkv"]

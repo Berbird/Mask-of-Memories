@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bwf7xypim7j6a"
-path="res://.godot/imported/basement.glb-db2838b62993ecad8c48b278ce1de5fd.scn"
+path="res://.godot/imported/basement.glb-8cae124c8a86946a713ef83f426a92a3.scn"
 
 [deps]
 
-source_file="res://3D/basement.glb"
-dest_files=["res://.godot/imported/basement.glb-db2838b62993ecad8c48b278ce1de5fd.scn"]
+source_file="res://3d/basement.glb"
+dest_files=["res://.godot/imported/basement.glb-8cae124c8a86946a713ef83f426a92a3.scn"]
 
 [params]
 
