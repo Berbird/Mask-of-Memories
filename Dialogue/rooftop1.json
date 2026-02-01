@@ -1,0 +1,27 @@
+[
+	{
+		"name": "Lyra",
+		"text": "The wind is so much sharper up here on the roof... You can see the whole school from this ledge, Cain.",
+		"portrait": "Lyra_Neutral"
+	},
+	{
+		"name": "Cain",
+		"text": "Get away from the edge. It's not safe. Why did you bring the art project up here?",
+		"portrait": ""
+	},
+	{
+		"name": "Lyra",
+		"text": "The comedy mask? It’s funny, isn't it? We spent weeks layering the paper, painting the perfect smile...",
+		"portrait": "Lyra_Neutral"
+	},
+	{
+		"name": "Lyra",
+		"text": "But it’s just a shell. Like me. I spend every day 'masking' so they don't see the version of me they talk about in the halls.",
+		"portrait": "Lyra_Neutral"
+	},
+	{
+		"name": "Lyra",
+		"text": "Tell me, Cain... if I take the mask off, is there even a person left underneath? Or am I just... empty?",
+		"portrait": "Lyra_Neutral"
+	}
+]

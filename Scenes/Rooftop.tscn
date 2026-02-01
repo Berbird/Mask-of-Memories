@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwj0dp6dc0h1d"]
+
+[ext_resource type="Texture2D" uid="uid://hlqnv7fwx3hb" path="res://Map/Rooftop.png" id="1_0v25q"]
+[ext_resource type="Script" uid="uid://cjv62oump38hp" path="res://Scenes/rooftop.gd" id="1_knhor"]
+[ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_e2lb8"]
+[ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="3_edbyn"]
+[ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="4_knhor"]
+[ext_resource type="AudioStream" uid="uid://dysv1laxnunrj" path="res://Sounds/Music/fall.mp3" id="6_wxn3a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxn3a"]
+size = Vector2(27, 9)
+
+[node name="Rooftop" type="Node2D"]
+script = ExtResource("1_knhor")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 91)
+texture = ExtResource("1_0v25q")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_e2lb8")]
+
+[node name="Lyra" parent="." instance=ExtResource("3_edbyn")]
+position = Vector2(153, 62)
+
+[node name="Area2D" type="Area2D" parent="Lyra"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lyra/Area2D"]
+position = Vector2(-0.5, 12.5)
+shape = SubResource("RectangleShape2D_wxn3a")
+
+[node name="Cain" parent="." instance=ExtResource("4_knhor")]
+position = Vector2(220, 153)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_wxn3a")
+volume_db = 16.755
+
+[connection signal="body_entered" from="Lyra/Area2D" to="." method="_on_area_2d_body_entered"]
