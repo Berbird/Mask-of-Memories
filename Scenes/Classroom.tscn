@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://h6g71l0mcfcr"]
+[gd_scene load_steps=8 format=3 uid="uid://h6g71l0mcfcr"]
 
 [ext_resource type="Texture2D" uid="uid://djvv44v2oxcar" path="res://Map/EmptyRoom.png" id="1_jjrax"]
+[ext_resource type="Script" uid="uid://ee05oik48vaf" path="res://Scenes/classroom.gd" id="1_xt1a6"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="2_285xf"]
 [ext_resource type="PackedScene" uid="uid://twf5vqbnchng" path="res://Objects/Class Objects/Desk.tscn" id="3_ryp0j"]
-[ext_resource type="PackedScene" uid="uid://55vod0i2dk7u" path="res://Objects/Class Objects/Lyra.tscn" id="4_285xf"]
+[ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="4_xt1a6"]
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="5_ryp0j"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3g6n"]
+size = Vector2(30, 28)
+
 [node name="Classroom" type="Node2D"]
+script = ExtResource("1_xt1a6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(159, 92)
@@ -15,11 +20,13 @@ texture = ExtResource("1_jjrax")
 [node name="Cain" parent="." instance=ExtResource("2_285xf")]
 position = Vector2(237, 90)
 
-[node name="Camera2D" parent="Cain" index="3"]
-limit_bottom = 180
+[node name="Node2D" parent="." instance=ExtResource("4_xt1a6")]
+position = Vector2(173, 97)
 
-[node name="Lyra" parent="." instance=ExtResource("4_285xf")]
-position = Vector2(208, 67)
+[node name="Area2D" type="Area2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+shape = SubResource("RectangleShape2D_f3g6n")
 
 [node name="Desk" parent="." instance=ExtResource("3_ryp0j")]
 position = Vector2(57, 94)
@@ -50,4 +57,4 @@ position = Vector2(94, 63)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("5_ryp0j")]
 
-[editable path="Cain"]
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,1 +1,47 @@
-null
+[
+  {
+	"name": "Cain",
+	"text": "Hey, Lyra? Are you still staring at that same page? The sun's almost down.",
+	"portrait": ""
+  },
+  {
+	"name": "Lyra",
+	"text": "I'm trying, Cain. I really am. But the letters... they aren't staying in their rows anymore.",
+	"portrait": "Lyra_Neutral"
+  },
+  {
+	"name": "Cain",
+	"text": "It’s just a poem. You’ve been at it for an hour. Look, just follow my finger. It’s not that hard if you just focus.",
+	"portrait": ""
+  },
+  {
+	"name": "Lyra",
+	"text": "It doesn't work like that for me. When I look too hard, the white of the paper swallows the black ink.",
+	"portrait": "Lyra_Neutral"
+  },
+  {
+	"name": "Lyra",
+	"text": "Everything just turns into... yellow clouds. Soft, blurry shapes floating over the desk.",
+	"portrait": "Lyra_Neutral"
+  },
+  {
+	"name": "Cain",
+	"text": "Yellow clouds? Lyra, you're just tired. Clouds are in the sky, not in a literature textbook.",
+	"portrait": ""
+  },
+  {
+	"name": "Lyra",
+	"text": "Maybe. I just wish you could see the clouds too, sometimes. It’s lonely being the only one in the room with them.",
+	"portrait": "Lyra_Neutral"
+  },
+  {
+	"name": "Cain",
+	"text": "Anyway, let's just get through this. If you finish the paragraph, I'll walk you home. Deal?",
+	"portrait": ""
+  },
+  {
+	"name": "Lyra",
+	"text": "Deal. I'll try to make the clouds behave for a few more minutes.",
+	"portrait": "Lyra_Neutral"
+  }
+]
