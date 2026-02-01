@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmrx42e6v7fpd"
-path.s3tc="res://.godot/imported/basement_4.png-c5893784719729988d7e21d2f96240c2.s3tc.ctex"
+path.s3tc="res://.godot/imported/basement_4.png-d62532210364ff0ff89ec41054e7bd7c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://3d/basement_4.png"
-dest_files=["res://.godot/imported/basement_4.png-c5893784719729988d7e21d2f96240c2.s3tc.ctex"]
+source_file="res://3D/basement_4.png"
+dest_files=["res://.godot/imported/basement_4.png-d62532210364ff0ff89ec41054e7bd7c.s3tc.ctex"]
 
 [params]
 
