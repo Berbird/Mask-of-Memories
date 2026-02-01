@@ -1,5 +1,22 @@
-[gd_scene format=3 uid="uid://b8lq4g4hrbenf"]
+[gd_scene load_steps=3 format=3 uid="uid://b8lq4g4hrbenf"]
+
+[ext_resource type="FontFile" uid="uid://dt5sgpkryjq1j" path="res://Fonts/PixelOperator-Bold.ttf" id="1_6ukqj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ukqj"]
+bg_color = Color(0.32156864, 0.023529412, 0.29411766, 0.3019608)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
 
 [node name="ChoiceButton" type="Button"]
-offset_right = 8.0
+offset_right = 20.0
 offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("1_6ukqj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ukqj")
