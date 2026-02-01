@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm2pxxim7jj8b"]
+[gd_scene load_steps=12 format=3 uid="uid://bm2pxxim7jj8b"]
 
 [ext_resource type="Script" uid="uid://dpumklejwlkrh" path="res://Scripts/DialogueSystem.gd" id="1_vgbim"]
 [ext_resource type="AudioStream" uid="uid://c2go7uhmp8rkg" path="res://Sounds/SFX/Cain_Blip.wav" id="2_3tw4l"]
 [ext_resource type="Texture2D" uid="uid://683wex7ege6s" path="res://Other Art/Arrow.png" id="2_acykv"]
 [ext_resource type="FontFile" uid="uid://dt5sgpkryjq1j" path="res://Fonts/PixelOperator-Bold.ttf" id="2_mu8w7"]
+[ext_resource type="Shader" uid="uid://b61edwxry5cc5" path="res://Shaders/Portrait.gdshader" id="2_v6ttb"]
 [ext_resource type="AudioStream" uid="uid://bgso4lsf7rv24" path="res://Sounds/SFX/Lyra_Blip.wav" id="3_acykv"]
 [ext_resource type="AudioStream" uid="uid://beakq1l1odmch" path="res://Sounds/SFX/Mask_Blip.wav" id="4_mu8w7"]
 [ext_resource type="AudioStream" uid="uid://c07t4p1vxwxth" path="res://Sounds/SFX/Normal_Blip.wav" id="5_v6ttb"]
@@ -22,6 +23,14 @@ corner_radius_bottom_left = 2
 shadow_color = Color(0.41960785, 0.41960785, 0.41960785, 0)
 shadow_size = 3
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggoym"]
+shader = ExtResource("2_v6ttb")
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/color3 = Color(0, 0, 0, 1)
+shader_parameter/color4 = Color(0, 0, 0, 1)
+shader_parameter/color5 = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18b0x"]
 content_margin_left = 1.0
 content_margin_top = 1.0
@@ -39,6 +48,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="CanvasLayer" type="CanvasLayer"]
+layer = 10
 script = ExtResource("1_vgbim")
 
 [node name="UI_Container" type="Control" parent="."]
@@ -68,6 +78,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vgbim")
 unique_name_in_owner = true
 texture_filter = 5
 texture_repeat = 1
+material = SubResource("ShaderMaterial_ggoym")
 layout_mode = 0
 offset_left = 238.0
 offset_top = 10.0

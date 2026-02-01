@@ -12,7 +12,7 @@ shader_parameter/color4 = Color(0, 0, 0, 1)
 shader_parameter/color5 = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
-layer = 128
+layer = 5
 
 [node name="ColorRect" type="ColorRect" parent="."]
 texture_filter = 1
