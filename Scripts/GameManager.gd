@@ -4,6 +4,7 @@ var last_player_position: Vector2 = Vector2.ZERO
 var is_returning_from_memory: bool = false
 var is_dialogue_active = false
 var can_interact = true
+var corruption_points : int = 0
 
 var _story_flags: Dictionary = {}
 

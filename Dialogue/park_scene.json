@@ -1,0 +1,60 @@
+{
+  "start": [
+	{ "name": "Cain", "text": "Finally, our first date. I heard you always come here." },
+	{ "name": "Lyra", "text": "Mhm. After school... It’s good for clearing my head." },
+	{ "name": "Cain", "text": "You finally included me in this place, then." },
+	{ "name": "Lyra", "text": "Well, here we are, love. Should I not have come?" },
+	{
+	  "name": "Cain",
+	  "text": "I don't know... I just thought maybe you had more important plans.",
+	  "choices": [
+		{ "text": "I was just afraid you'd find an excuse to stay away.", "target": "funny_story", "impact": 5 },
+		{ "text": "I'm just glad you're here now. That’s all that matters.", "target": "funny_story", "impact": 0 }
+	  ]
+	}
+  ],
+  "funny_story": [
+	{ "name": "Lyra", "text": "It’s my day off. Don’t think I’m only here because I’m free, though... I mean, you get it." },
+	{ "name": "Cain", "text": "You were going to tell me something funny." },
+	{ "name": "Lyra", "text": "What funny thing?" },
+	{ "name": "Cain", "text": "The one about the subways. You told me to remind you if you forgot." },
+	{ "name": "Lyra", "text": "Oh... My dad says I used to always mix up the names of vehicles when I was little." },
+	{ "name": "Cain", "text": "Which ones?" },
+	{ "name": "Lyra", "text": "I’d call cars 'trucks' and trucks 'cars.' I didn't believe him at first, but my mom confirmed it too." },
+	{ "name": "Cain", "text": "What color is that car passing by, then?" },
+	{ "name": "Lyra", "text": "I know it’s a truck now. Are you satisfied?" },
+	{
+	  "name": "Cain",
+	  "text": "I just wanted to check.",
+	  "choices": [
+		{ "text": "I have to check. You get confused so easily.", "target": "pistachio_car", "impact": 5 },
+		{ "text": "I'm sorry. I shouldn't treat you like a child.", "target": "pistachio_car", "impact": 0 }
+	  ]
+	}
+  ],
+  "pistachio_car": [
+	{ "name": "Lyra", "text": "Then, do you know the color of that car passing by?" },
+	{ "name": "Cain", "text": "A green ca—" },
+	{ "name": "Lyra", "text": "No. A pistachio green car." },
+	{ "name": "Cain", "text": "Thank you..." },
+	{ "name": "Cain", "text": "There was a promise you made me about this place. Do you remember?" },
+	{ "name": "Lyra", "text": "What promise?" },
+	{
+	  "name": "Cain",
+	  "text": "You promised. On our first date... You’d hold my hand. For the first time.",
+	  "choices": [
+		{ "text": "But you did. You said it would happen today. Don't take it back.", "target": "hand_holding", "impact": 5 },
+		{ "text": "Maybe I just wanted to hear it so badly that I convinced myself you said it.", "target": "hand_holding", "impact": 0 }
+	  ]
+	}
+  ],
+  "hand_holding": [
+	{ "name": "Lyra", "text": "Did I say that? I can't remember." },
+	{ "name": "Cain", "text": "But you did." },
+	{ "name": "Lyra", "text": "..." },
+	{ "name": "Cain", "text": "..." },
+	{ "name": "Lyra", "text": "..." },
+	{ "name": "Lyra", "text": "I think you’re lucky we didn't get into an argument and cancel the plans again. Like we always do." },
+	{ "name": "Cain", "text": "I’m lucky every moment I’m with you." }
+  ]
+}

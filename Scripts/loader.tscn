@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dosiwtu4vomx5"]
+
+[ext_resource type="Texture2D" uid="uid://dobb438dup7py" path="res://Map/Road.png" id="1_dmqr1"]
+[ext_resource type="Texture2D" uid="uid://cfyit5lj8vsrs" path="res://Characters/Lyra/Movement/LyraIdle.png" id="1_hlshc"]
+[ext_resource type="Script" uid="uid://dxd3jom2mhe0y" path="res://loader.gd" id="2_dmqr1"]
+[ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="3_dlaj8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmqr1"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Road" type="Sprite2D" parent="."]
+position = Vector2(99, 124)
+texture = ExtResource("1_dmqr1")
+
+[node name="Cain" parent="." instance=ExtResource("3_dlaj8")]
+position = Vector2(134, 117)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(71, 107)
+script = ExtResource("2_dmqr1")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_hlshc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(1.6883326, -0.8045354)
+shape = SubResource("RectangleShape2D_dmqr1")
