@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var dialogue_queue = []
 var is_typing = false
 var is_waiting_input = false
 var is_skipping = false
@@ -174,12 +175,11 @@ func animate_text():
 func handle_dialogue_input():
 	if is_waiting_input:
 		if current_char_index >= full_text_storage.length():
-			close_dialogue()
+			show_next_dialogue_node();
 		else:
 			is_waiting_input = false
 			is_skipping = false
 			hide_indicator()
-			
 			prepare_next_page()
 
 func close_dialogue():
@@ -206,3 +206,30 @@ func hide_indicator():
 	next_indicator.hide()
 	if indicator_tween: indicator_tween.kill()
 	next_indicator.modulate.a = 1.0
+	
+func load_dialogue(file_path: String):
+	if not FileAccess.file_exists(file_path):
+		printerr("Dialogue file doesn't exist: ", file_path)
+		return
+	
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var json_string = file.get_as_text()
+	var json = JSON.new()
+	var parse_result = json.parse(json_string)
+	
+	if parse_result == OK:
+		dialogue_queue = json.get_data()
+		show_next_dialogue_node()
+	else:
+		printerr("JSON Error: ", json.get_error_message())
+
+func show_next_dialogue_node():
+	if dialogue_queue.size() > 0:
+		var current_node = dialogue_queue.pop_front()
+		start_dialogue(
+			current_node.get("text", ""),
+			current_node.get("name", ""),
+			current_node.get("portrait", "")
+		)
+	else:
+		close_dialogue()
