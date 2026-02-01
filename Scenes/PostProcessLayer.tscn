@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcr4ycpo2jbs3"]
+
+[ext_resource type="Shader" uid="uid://lslwev7auj2" path="res://Shaders/PaletteLimiter.gdshader" id="1_53a7w"]
+[ext_resource type="Script" uid="uid://d3vxva1g37pai" path="res://Scripts/ColorRectShader.gd" id="2_n12xo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n12xo"]
+shader = ExtResource("1_53a7w")
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/color3 = Color(0, 0, 0, 1)
+shader_parameter/color4 = Color(0, 0, 0, 1)
+shader_parameter/color5 = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_n12xo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_n12xo")

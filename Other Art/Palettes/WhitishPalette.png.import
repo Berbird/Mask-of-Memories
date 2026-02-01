@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xvauk10hrm0t"
-path="res://.godot/imported/Default_Mask.png-6fcb58735103a40ff6c76774009e3708.ctex"
+uid="uid://cjxihhf716kmu"
+path="res://.godot/imported/WhitishPalette.png-b7eb4f2734c6ef53781072c9e74c8185.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Masks/Default_Mask.png"
-dest_files=["res://.godot/imported/Default_Mask.png-6fcb58735103a40ff6c76774009e3708.ctex"]
+source_file="res://Other Art/Palettes/WhitishPalette.png"
+dest_files=["res://.godot/imported/WhitishPalette.png-b7eb4f2734c6ef53781072c9e74c8185.ctex"]
 
 [params]
 

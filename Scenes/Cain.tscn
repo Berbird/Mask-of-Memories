@@ -211,3 +211,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_i1iv0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 320
+limit_bottom = 1260

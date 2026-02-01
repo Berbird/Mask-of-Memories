@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://46pjsmdy64im"]
 
-[ext_resource type="PackedScene" uid="uid://cx6moxht3y57g" path="res://Masks/simple_comedy_mask.glb" id="1_fylo8"]
+[ext_resource type="PackedScene" uid="uid://cx6moxht3y57g" path="res://Other Art/Masks/simple_comedy_mask.glb" id="1_fylo8"]
 [ext_resource type="Script" uid="uid://csgq0i3b6w1i2" path="res://Scripts/Static_Body_3D.gd" id="2_i2oi5"]
 
 [node name="Sketchfab_Scene" instance=ExtResource("1_fylo8")]

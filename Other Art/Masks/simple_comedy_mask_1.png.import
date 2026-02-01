@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxgyd03vsdjda"
-path.s3tc="res://.godot/imported/simple_comedy_mask_2.png-6398cc6605ff9a1a2c3b03340183971d.s3tc.ctex"
+uid="uid://bmbxqo3hm3dtu"
+path.s3tc="res://.godot/imported/simple_comedy_mask_1.png-66a8629b5ed885d26a888a0d2bcb1676.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "8ee63f3dd45f86b389d1677f64f5d9f6"
+"md5": "e90cc3074831761a23cb9f10c8dec6bb"
 }
 
 [deps]
 
-source_file="res://Masks/simple_comedy_mask_2.png"
-dest_files=["res://.godot/imported/simple_comedy_mask_2.png-6398cc6605ff9a1a2c3b03340183971d.s3tc.ctex"]
+source_file="res://Other Art/Masks/simple_comedy_mask_1.png"
+dest_files=["res://.godot/imported/simple_comedy_mask_1.png-66a8629b5ed885d26a888a0d2bcb1676.s3tc.ctex"]
 
 [params]
 
@@ -25,11 +25,11 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=8
 roughness/src_normal="res://Masks/simple_comedy_mask_2.png"
 process/channel_remap/red=0
 process/channel_remap/green=1

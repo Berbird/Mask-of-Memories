@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btrj8ptagg51r"
-path="res://.godot/imported/allahımnolurolsun.png-a257704b16191cf688f79147b44d95c5.ctex"
+uid="uid://xvauk10hrm0t"
+path="res://.godot/imported/Default_Mask.png-9ee538b86b128972b64d1b3f0e245eca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects ART/allahımnolurolsun.png"
-dest_files=["res://.godot/imported/allahımnolurolsun.png-a257704b16191cf688f79147b44d95c5.ctex"]
+source_file="res://Other Art/Masks/Default_Mask.png"
+dest_files=["res://.godot/imported/Default_Mask.png-9ee538b86b128972b64d1b3f0e245eca.ctex"]
 
 [params]
 

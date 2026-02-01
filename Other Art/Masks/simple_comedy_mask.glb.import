@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cx6moxht3y57g"
-path="res://.godot/imported/simple_comedy_mask.glb-1c262e318f3bc1391ef3c515e371f445.scn"
+path="res://.godot/imported/simple_comedy_mask.glb-de1b3b58d5641e4693c4568f08f6cc22.scn"
 
 [deps]
 
-source_file="res://Masks/simple_comedy_mask.glb"
-dest_files=["res://.godot/imported/simple_comedy_mask.glb-1c262e318f3bc1391ef3c515e371f445.scn"]
+source_file="res://Other Art/Masks/simple_comedy_mask.glb"
+dest_files=["res://.godot/imported/simple_comedy_mask.glb-de1b3b58d5641e4693c4568f08f6cc22.scn"]
 
 [params]
 
