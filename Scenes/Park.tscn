@@ -4,58 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bpi33ejb10dct" path="res://Map/TileRoom.png" id="1_tgvf0"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="2_2fh65"]
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_p6xxt"]
-[ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="3_7blpo"]
-[ext_resource type="Texture2D" uid="uid://cm71xmbe6qrci" path="res://Characters/Shadows/ShadowMan.png" id="5_vm4cq"]
-[ext_resource type="Texture2D" uid="uid://bu047v1sdsmq3" path="res://Characters/Shadows/ShadowGirl.png" id="6_w0wti"]
-[ext_resource type="PackedScene" uid="uid://bcr4ycpo2jbs3" path="res://Scenes/PostProcessLayer.tscn" id="7_3mvjm"]
-[ext_resource type="Shader" uid="uid://lslwev7auj2" path="res://Shaders/PaletteLimiter.gdshader" id="8_vm4cq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm4cq"]
-size = Vector2(3.5, 319)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0mqpy"]
-atlas = ExtResource("5_vm4cq")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vhmml"]
-atlas = ExtResource("5_vm4cq")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7l7u3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0mqpy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vhmml")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 2.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tgcwl"]
-atlas = ExtResource("6_w0wti")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3mvjm"]
-atlas = ExtResource("6_w0wti")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vm4cq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tgcwl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3mvjm")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 2.0
-}]
+[ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="3_7blpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6xxt"]
 size = Vector2(25, 25)

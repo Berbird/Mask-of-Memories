@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_e2lb8"]
 [ext_resource type="PackedScene" uid="uid://ctw0joa0c3e31" path="res://Scenes/LyraScene.tscn" id="3_edbyn"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="4_knhor"]
+[ext_resource type="AudioStream" uid="uid://5ig738vxee8p" path="res://Sounds/Music/fall.mp3" id="6_wxn3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxn3a"]
 size = Vector2(27, 9)

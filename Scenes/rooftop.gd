@@ -30,17 +30,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			# 3. Play the audio
 		if sfx_player:
 			if sfx_player.stream:
-				sfx_player.play()
+				
 				print("JUMPSCARE: Audio Playing")
 				var tween = create_tween()
-				tween.tween_property($CanvasModulate, "color", Color(0, 0, 0, 1), 1).set_trans(Tween.TRANS_CUBIC)
+				tween.tween_property($CanvasModulate, "color", Color(0, 0, 0, 1.1), 0.7).set_trans(Tween.TRANS_CUBIC)
+				await get_tree().create_timer(2).timeout
+				sfx_player.play()
 				await get_tree().create_timer(5).timeout
 				get_tree().change_scene_to_file("res://Scenes/MemoryLane.tscn")
 			else:
 				print("Error: Audio node found but NO STREAM assigned.")
 		else:
 			print("Error: AudioStreamPlayer2D node is NULL.")
-			
-			
-		
-			
