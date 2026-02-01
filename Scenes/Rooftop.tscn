@@ -1,14 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwj0dp6dc0h1d"]
+[gd_scene load_steps=12 format=3 uid="uid://bwj0dp6dc0h1d"]
 
 [ext_resource type="Texture2D" uid="uid://hlqnv7fwx3hb" path="res://Map/Rooftop.png" id="1_0v25q"]
-[ext_resource type="Script" uid="uid://cjv62oump38hp" path="res://Scenes/rooftop.gd" id="1_knhor"]
+[ext_resource type="Script" path="res://Scenes/rooftop.gd" id="1_knhor"]
 [ext_resource type="PackedScene" uid="uid://bm2pxxim7jj8b" path="res://Scenes/DialogueSystem.tscn" id="2_e2lb8"]
 [ext_resource type="PackedScene" uid="uid://l8manebjhlc7" path="res://Scenes/LyraScene.tscn" id="3_edbyn"]
 [ext_resource type="PackedScene" uid="uid://3cls21m6mfe8" path="res://Scenes/Cain.tscn" id="4_knhor"]
 [ext_resource type="AudioStream" uid="uid://dysv1laxnunrj" path="res://Sounds/Music/fall.mp3" id="6_wxn3a"]
+[ext_resource type="PackedScene" uid="uid://bcr4ycpo2jbs3" path="res://Scenes/PostProcessLayer.tscn" id="7_4boo2"]
+[ext_resource type="Shader" uid="uid://lslwev7auj2" path="res://Shaders/PaletteLimiter.gdshader" id="8_w076b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxn3a"]
 size = Vector2(27, 9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dxam"]
+shader = ExtResource("8_w076b")
+shader_parameter/color1 = Color(0.627451, 0.3137255, 0.03529412, 1)
+shader_parameter/color2 = Color(0.79607844, 0.6117647, 0.17254902, 1)
+shader_parameter/color3 = Color(0.87058824, 0.76862746, 0.2901961, 1)
+shader_parameter/color4 = Color(0.9254902, 0.89411765, 0.38039216, 1)
+shader_parameter/color5 = Color(0.95686275, 0.972549, 0.7058824, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4boo2"]
+size = Vector2(320, 7)
 
 [node name="Rooftop" type="Node2D"]
 script = ExtResource("1_knhor")
@@ -18,6 +31,11 @@ position = Vector2(160, 91)
 texture = ExtResource("1_0v25q")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_e2lb8")]
+palette_1 = Color(0.627451, 0.3137255, 0.03529412, 1)
+palette_2 = Color(0.79607844, 0.6117647, 0.17254902, 1)
+palette_3 = Color(0.87058824, 0.76862746, 0.2901961, 1)
+palette_4 = Color(0.9254902, 0.89411765, 0.38039216, 1)
+palette_5 = Color(0.95686275, 0.972549, 0.7058824, 1)
 
 [node name="Lyra" parent="." instance=ExtResource("3_edbyn")]
 position = Vector2(153, 62)
@@ -31,8 +49,45 @@ shape = SubResource("RectangleShape2D_wxn3a")
 [node name="Cain" parent="." instance=ExtResource("4_knhor")]
 position = Vector2(220, 153)
 
+[node name="Camera2D" parent="Cain" index="3"]
+limit_bottom = 180
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_wxn3a")
 volume_db = 16.755
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("7_4boo2")]
+
+[node name="ColorRect" parent="CanvasLayer2" index="0"]
+material = SubResource("ShaderMaterial_4dxam")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(160, 65.5)
+shape = SubResource("RectangleShape2D_4boo2")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(160, 179)
+shape = SubResource("RectangleShape2D_4boo2")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-1, 96)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_4boo2")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(321, 99)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_4boo2")
+
 [connection signal="body_entered" from="Lyra/Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="Cain"]
+[editable path="CanvasLayer2"]
